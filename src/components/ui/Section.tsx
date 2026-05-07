@@ -12,9 +12,9 @@ interface Props {
 }
 
 const spacings = {
-  sm: 'py-16 md:py-24',
-  md: 'py-20 md:py-32',
-  lg: 'py-24 md:py-section',
+  sm: 'py-12 md:py-16 lg:py-20',
+  md: 'py-14 md:py-20 lg:py-24',
+  lg: 'py-16 md:py-24 lg:py-28',
 };
 
 export default function Section({
@@ -30,7 +30,7 @@ export default function Section({
     <section id={id} className={cn(spacings[spacing], className)}>
       <div className="container-page">
         {(eyebrow || heading || description) && (
-          <div className="mb-12 max-w-2xl md:mb-16">
+          <div className="mb-10 max-w-2xl md:mb-12">
             {eyebrow && <p className="caption text-gold-500">{eyebrow}</p>}
             {heading && <h2 className="mt-4">{heading}</h2>}
             {description && (

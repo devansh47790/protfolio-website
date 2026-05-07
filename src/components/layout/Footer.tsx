@@ -13,7 +13,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="caption text-charcoal-500">Pages</h4>
+          <h4 className="caption text-gold-500">Pages</h4>
           <ul className="mt-6 space-y-3 text-body-md">
             <li><Link to="/about" className="text-charcoal-700 hover:text-gold-500">About</Link></li>
             <li><Link to="/services" className="text-charcoal-700 hover:text-gold-500">Services</Link></li>
@@ -24,7 +24,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="caption text-charcoal-500">Elsewhere</h4>
+          <h4 className="caption text-gold-500">Elsewhere</h4>
           <ul className="mt-6 space-y-3 text-body-md">
             {siteSettings.socials.map((s) => (
               <li key={s.label}>
@@ -50,7 +50,7 @@ export default function Footer() {
       <div className="border-t border-surface-400 py-6">
         <div className="container-page flex flex-col items-center justify-between gap-2 text-charcoal-500 sm:flex-row">
           <p className="caption">Copyright {year} {siteSettings.ownerName}</p>
-          <p className="caption">Aura & Essence / React / Vite / Tailwind</p>
+          <p className="caption">Wordpress / WooCommerce / React</p>
         </div>
       </div>
     </footer>

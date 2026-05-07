@@ -51,7 +51,7 @@
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-container px-6 sm:px-10 lg:px-edge;
+    @apply mx-auto w-full max-w-container px-6 sm:px-10 lg:px-12 xl:px-edge;
   }
 
   .caption {

@@ -5,32 +5,30 @@ import Reveal from '../components/ui/Reveal';
 import Button from '../components/ui/Button';
 import ProjectCard from '../components/sections/ProjectCard';
 import ServiceCard from '../components/sections/ServiceCard';
-import TestimonialCard from '../components/sections/TestimonialCard';
 import Seo from '../components/seo/Seo';
 import { useContent } from '../hooks/useContent';
 import {
-  getHomeContent, getFeaturedProjects, getServices, getTestimonials,
+  getHomeContent, getFeaturedProjects, getServices,
 } from '../lib/cms';
 
 export default function HomePage() {
   const { data: home } = useContent(getHomeContent);
   const { data: featured } = useContent(getFeaturedProjects);
   const { data: services } = useContent(getServices);
-  const { data: testimonials } = useContent(getTestimonials);
 
   return (
     <PageTransition>
       <Seo
         title="Devansh Patel - Frontend Engineer"
-        description="Portfolio, projects, and writing by Devansh Patel."
+        description="WordPress, React, and API portfolio work by Devansh Patel."
       />
 
       {home && <Hero content={home} />}
 
       <Section
         eyebrow="Selected work"
-        heading="Recent projects"
-        description="A few things I've shipped lately. Click any card to read the case study."
+        heading="WordPress websites and portfolio builds"
+        description="A selection of WordPress websites across e-commerce, company portfolios, service businesses, trades, healthcare, construction, and professional services."
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {featured?.map((p, i) => (
@@ -48,22 +46,12 @@ export default function HomePage() {
         className="bg-surface-200"
         eyebrow="What I do"
         heading="Services"
-        description="Engagements I take on. Pick what fits, or let's design something custom."
+        description="Focused builds for clients who need premium presentation and practical content control."
       >
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
           {services?.map((s, i) => (
             <Reveal key={s._id} delay={i * 0.05}>
               <ServiceCard service={s} />
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Kind words" heading="What clients say">
-        <div className="grid gap-6 md:grid-cols-3">
-          {testimonials?.map((t, i) => (
-            <Reveal key={t._id} delay={i * 0.05}>
-              <TestimonialCard testimonial={t} />
             </Reveal>
           ))}
         </div>
@@ -77,7 +65,14 @@ export default function HomePage() {
               I'm available for full-time roles and select contract work. Tell me a little about what you need.
             </p>
             <div className="mt-7">
-              <Button to="/contact" size="lg" variant="secondary">Start a conversation</Button>
+              <Button
+                to="/contact"
+                size="lg"
+                variant="secondary"
+                className="text-surface-50 hover:text-charcoal-900"
+              >
+                Start a conversation
+              </Button>
             </div>
           </div>
         </Reveal>

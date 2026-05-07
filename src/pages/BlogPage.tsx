@@ -1,46 +1,37 @@
-import { Link } from 'react-router-dom';
 import PageTransition from '../components/layout/PageTransition';
 import Section from '../components/ui/Section';
 import Reveal from '../components/ui/Reveal';
-import Badge from '../components/ui/Badge';
-import Card from '../components/ui/Card';
+import Button from '../components/ui/Button';
 import Seo from '../components/seo/Seo';
-import { useContent } from '../hooks/useContent';
-import { getBlogPosts } from '../lib/cms';
 
 export default function BlogPage() {
-  const { data: posts } = useContent(getBlogPosts);
-
   return (
     <PageTransition>
-      <Seo title="Blog - Devansh Patel" description="Notes on frontend, design systems, and craft." />
+      <Seo
+        title="Journal - Devansh Patel"
+        description="Draft journal for notes on WordPress, React, APIs, and web craft."
+      />
 
       <Section
         spacing="lg"
-        eyebrow="Blog"
-        heading="Notes from the workbench"
-        description="Short writing on frontend, design systems, and the things I'm figuring out."
+        eyebrow="Journal draft"
+        heading="Notes are coming soon"
+        description="This section is parked for now while the portfolio content is tightened. Future posts will cover WordPress builds, React frontends, API integrations, and practical website craft."
       >
-        <div className="grid gap-6 md:grid-cols-2">
-          {posts?.map((post, i) => (
-            <Reveal key={post._id} delay={i * 0.05}>
-              <Link to={`/blog/${post.slug}`} className="block">
-                <Card hoverable>
-                  <p className="caption text-charcoal-500">
-                    {new Date(post.publishedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
-                    {' / '}
-                    {post.readingMinutes} min read
-                  </p>
-                  <h2 className="mt-2 text-h3">{post.title}</h2>
-                  <p className="mt-3 text-body-md text-charcoal-500">{post.excerpt}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {post.tags.map((t) => <Badge key={t}>{t}</Badge>)}
-                  </div>
-                </Card>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal>
+          <div className="border border-surface-400 bg-surface-100 p-8 md:p-12">
+            <h2 className="text-h3">Planned topics</h2>
+            <ul className="mt-6 grid gap-4 text-body-lg text-charcoal-700 sm:grid-cols-2">
+              <li className="border-t border-surface-400 pt-4">WordPress sites that clients can actually maintain</li>
+              <li className="border-t border-surface-400 pt-4">When to use React instead of a traditional CMS theme</li>
+              <li className="border-t border-surface-400 pt-4">Connecting portfolio content through clean APIs</li>
+              <li className="border-t border-surface-400 pt-4">Performance checks before launching a small website</li>
+            </ul>
+            <div className="mt-8">
+              <Button to="/contact" variant="secondary">Suggest a topic</Button>
+            </div>
+          </div>
+        </Reveal>
       </Section>
     </PageTransition>
   );

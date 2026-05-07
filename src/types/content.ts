@@ -54,6 +54,7 @@ export interface Project {
   summary: string;
   category: string;       // used by the filter on /projects
   tags: string[];
+  imageUrl?: string;
   coverColor: string;     // tailwind gradient class for the placeholder cover
   featured: boolean;
   liveUrl?: string;

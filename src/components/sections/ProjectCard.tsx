@@ -14,7 +14,17 @@ export default function ProjectCard({ project }: Props) {
     >
       <Link to={`/projects/${project.slug}`} className="block">
         <div className={`relative aspect-[4/3] w-full bg-gradient-to-br ${project.coverColor}`}>
-          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(28,27,27,0.08)_1px,transparent_1px)] bg-[length:18px_18px] opacity-50" aria-hidden />
+          {project.imageUrl ? (
+            <img
+              src={project.imageUrl}
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(28,27,27,0.08)_1px,transparent_1px)] bg-[length:18px_18px] opacity-50" aria-hidden />
+          )}
+          <div className="absolute inset-0 bg-charcoal-900/35" aria-hidden />
           <div className="absolute bottom-6 left-6 right-6 text-surface-50">
             <p className="caption text-surface-50/80">{project.category}</p>
             <p className="mt-2 font-display text-h4 leading-tight">{project.title}</p>
@@ -29,7 +39,7 @@ export default function ProjectCard({ project }: Props) {
             ))}
           </div>
           <p className="caption mt-8 text-gold-500 group-hover:text-charcoal-900">
-            View case study -&gt;
+            View project -&gt;
           </p>
         </div>
       </Link>

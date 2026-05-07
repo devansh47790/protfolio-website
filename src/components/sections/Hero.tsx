@@ -7,7 +7,7 @@ interface Props { content: HomeContent }
 export default function Hero({ content }: Props) {
   return (
     <section className="border-b border-surface-400">
-      <div className="container-page pb-24 pt-24 md:pb-section md:pt-section">
+      <div className="container-page pb-20 pt-20 md:pb-28 md:pt-28 lg:pb-32 lg:pt-32">
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ export default function Hero({ content }: Props) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-20 grid grid-cols-1 divide-y divide-surface-400 border-t border-surface-400 md:grid-cols-3 md:divide-x md:divide-y-0"
+          className="mt-14 grid grid-cols-1 divide-y divide-surface-400 border-t border-surface-400 md:mt-16 md:grid-cols-3 md:divide-x md:divide-y-0"
         >
           {content.highlightStats.map((s) => (
             <div key={s.label} className="px-0 py-6 md:px-8">

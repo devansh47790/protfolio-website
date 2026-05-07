@@ -24,13 +24,13 @@ export default function ProjectsPage() {
 
   return (
     <PageTransition>
-      <Seo title="Projects - Devansh Patel" description="Selected projects and case studies." />
+      <Seo title="Projects - Devansh Patel" description="React portfolio work, WordPress websites, WooCommerce builds, and custom theme projects." />
 
       <Section
         spacing="lg"
         eyebrow="Projects"
-        heading="Things I've built"
-        description="A growing collection of case studies. Use the filter to narrow by category."
+        heading="WordPress website portfolio"
+        description="A collection of React portfolio work, WordPress builds, WooCommerce sites, company portfolios, and WordPress custom themes. Use the filter to narrow by category."
       >
         <div className="mb-8 flex flex-wrap gap-2">
           {categories.map((c) => (

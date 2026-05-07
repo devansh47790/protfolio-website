@@ -51,71 +51,31 @@ export default function ProjectDetailPage() {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            {project.liveUrl && <Button href={project.liveUrl}>View live</Button>}
+            {project.liveUrl && <Button href={project.liveUrl}>Visit website</Button>}
             {project.repoUrl && <Button href={project.repoUrl} variant="secondary">View code</Button>}
+            <Button to="/projects" variant="text">Back to portfolio</Button>
           </div>
         </Reveal>
       </Section>
 
-      <div className="container-page">
+      <Section spacing="sm" className="bg-surface-200">
         <Reveal>
-          <div className={`relative h-72 overflow-hidden bg-gradient-to-br ${project.coverColor} md:h-96`}>
-            <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(28,27,27,0.08)_1px,transparent_1px)] bg-[length:18px_18px] opacity-50" aria-hidden />
+          <div className="grid gap-8 md:grid-cols-[1.2fr_0.8fr] md:items-start">
+            {project.imageUrl && (
+              <div className={`relative aspect-[4/3] overflow-hidden bg-gradient-to-br ${project.coverColor}`}>
+                <img src={project.imageUrl} alt="" className="h-full w-full object-cover" />
+              </div>
+            )}
+          <div className="max-w-2xl border border-surface-400 bg-surface-100 p-8 md:p-10">
+            <p className="caption text-gold-500">Project note</p>
+            <h2 className="mt-3 text-h3">Full case study is drafted for now</h2>
+            <p className="mt-4 text-body-lg text-charcoal-500">
+              I am keeping this page intentionally brief while the portfolio content is being refined.
+              For now, this entry includes the project type, stack, summary, and live website link.
+            </p>
+          </div>
           </div>
         </Reveal>
-      </div>
-
-      <Section>
-        <div className="grid gap-12 md:grid-cols-3">
-          <Reveal className="md:col-span-2">
-            <h2>The problem</h2>
-            <p className="mt-3 text-body-lg leading-relaxed text-charcoal-700">{project.problem}</p>
-
-            <h2 className="mt-12">My approach</h2>
-            <ul className="mt-3 space-y-3 text-body-lg leading-relaxed text-charcoal-700">
-              {project.approach.map((step, i) => (
-                <li key={i} className="flex gap-3">
-                  <span className="mt-3 h-px w-4 shrink-0 bg-gold-300" />
-                  {step}
-                </li>
-              ))}
-            </ul>
-
-            <h2 className="mt-12">Outcomes</h2>
-            <ul className="mt-3 space-y-3 text-body-lg leading-relaxed text-charcoal-700">
-              {project.outcomes.map((o, i) => (
-                <li key={i} className="flex gap-3">
-                  <span className="mt-3 h-px w-4 shrink-0 bg-gold-300" />
-                  {o}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <aside className="sticky top-24 border border-surface-400 bg-surface-100 p-6">
-              <h3 className="caption text-charcoal-500">Project info</h3>
-              <dl className="mt-4 space-y-3 text-body-md">
-                <div>
-                  <dt className="text-charcoal-500">Category</dt>
-                  <dd className="text-charcoal-900">{project.category}</dd>
-                </div>
-                <div>
-                  <dt className="text-charcoal-500">Date</dt>
-                  <dd className="text-charcoal-900">
-                    {new Date(project.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long' })}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-charcoal-500">Stack</dt>
-                  <dd className="mt-1 flex flex-wrap gap-1">
-                    {project.tags.map((t) => <Badge key={t} tone="soft">{t}</Badge>)}
-                  </dd>
-                </div>
-              </dl>
-            </aside>
-          </Reveal>
-        </div>
       </Section>
     </PageTransition>
   );

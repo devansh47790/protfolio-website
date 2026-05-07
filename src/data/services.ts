@@ -1,53 +1,53 @@
 /*
-  Static services data. Same shape as the future Sanity `service` document.
+  Static services data. Same shape as the future CMS `service` document.
 */
 import type { Service } from '../types/content';
 
 export const services: Service[] = [
   {
     _id: 's1',
-    slug: 'web-development',
-    title: 'Web Development',
-    summary: 'Modern marketing sites and product UIs in React + TypeScript.',
+    slug: 'wordpress-websites',
+    title: 'WordPress Websites',
+    summary: 'Custom WordPress sites that are polished, responsive, and simple for clients to update.',
     icon: 'code',
     bullets: [
-      'Component-driven architecture',
-      'Responsive across mobile, tablet, desktop',
-      'Accessible by default (WCAG AA)',
+      'Custom themes and page structures',
+      'Editor-friendly content management',
+      'Responsive builds for mobile, tablet, desktop',
     ],
   },
   {
     _id: 's2',
-    slug: 'design-systems',
-    title: 'Design Systems',
-    summary: 'Reusable component libraries with Tailwind, Storybook, and tokens.',
+    slug: 'react-frontends',
+    title: 'React Frontends',
+    summary: 'Modern React interfaces for portfolios, dashboards, landing pages, and product surfaces.',
     icon: 'layers',
     bullets: [
-      'Token-driven theming',
-      'Consistent spacing & typography',
-      'Documented for the whole team',
+      'Component-driven architecture',
+      'TypeScript and Tailwind workflows',
+      'Smooth motion and accessible interactions',
     ],
   },
   {
     _id: 's3',
-    slug: 'cms-integration',
-    title: 'CMS Integration',
-    summary: 'Sanity / Strapi backends so non-technical teammates can ship content.',
+    slug: 'api-integrations',
+    title: 'API Integrations',
+    summary: 'Connect sites to forms, CMS content, booking tools, dashboards, and third-party APIs.',
     icon: 'database',
     bullets: [
-      'Custom schemas for your content',
-      'Live preview on staging',
-      'Image pipeline & SEO fields',
+      'REST API and CMS data flows',
+      'Contact forms and automation hooks',
+      'Clean loading, empty, and error states',
     ],
   },
   {
     _id: 's4',
-    slug: 'performance-and-seo',
-    title: 'Performance & SEO',
-    summary: 'Lighthouse-100 sites with structured data and fast Core Web Vitals.',
+    slug: 'performance-care',
+    title: 'Performance Care',
+    summary: 'Optimization and cleanup for websites that need to feel faster, clearer, and more reliable.',
     icon: 'gauge',
     bullets: [
-      'Image optimization & lazy loading',
+      'Image optimization and lazy loading',
       'Pre-rendered metadata per page',
       'Robots, sitemap, and Open Graph',
     ],
