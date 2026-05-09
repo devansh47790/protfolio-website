@@ -6,7 +6,7 @@ import Seo from '../components/seo/Seo';
 export default function NotFoundPage() {
   return (
     <PageTransition>
-      <Seo title="Page not found" />
+      <Seo title="Page Not Found | Devansh Patel" noIndex />
       <Section spacing="lg">
         <p className="caption text-gold-500">404</p>
         <h1 className="mt-3">That page wandered off.</h1>

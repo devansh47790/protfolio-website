@@ -8,8 +8,10 @@ export default function BlogPage() {
   return (
     <PageTransition>
       <Seo
-        title="Journal - Devansh Patel"
-        description="Draft journal for notes on WordPress, React, APIs, and web craft."
+        title="Journal | WordPress, React & Web Craft"
+        description="Notes from Devansh Patel on WordPress builds, React frontends, API integrations, performance, SEO, and practical website craft."
+        keywords={['WordPress journal', 'React notes', 'API integration', 'frontend development', 'website performance SEO']}
+        path="/blog"
       />
 
       <Section

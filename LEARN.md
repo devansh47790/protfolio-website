@@ -331,3 +331,17 @@ Netlify Forms all work without writing a backend.
 | Token          | A named design value (color, spacing, font) defined in `tailwind.config.js`.    |
 
 Now go build something.
+
+## 13. Adding a CMS later
+
+When you want editor-friendly content without code changes, follow
+**SANITY-SETUP.md** at the project root. Summary:
+
+1. Create a Sanity project at sanity.io/manage.
+2. `cd studio && npm install && npm run dev` to start the Studio.
+3. Set `VITE_SANITY_PROJECT_ID` in `.env.local`.
+4. Run `npm run migrate:sanity` to push existing static content.
+5. Restart the dev server. Every page now reads from Sanity.
+
+The whole thing is a one-evening migration because the codebase was
+shaped for it from day one.

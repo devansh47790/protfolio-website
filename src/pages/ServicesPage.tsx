@@ -12,8 +12,10 @@ export default function ServicesPage() {
   return (
     <PageTransition>
       <Seo
-        title="Services - Devansh Patel"
-        description="Draft services for WordPress, React, and API-connected website builds."
+        title="WordPress, React & API Services | Devansh Patel"
+        description="Website services for custom WordPress builds, React frontends, WooCommerce, API integrations, performance, SEO, and maintainable content workflows."
+        keywords={['WordPress services', 'React frontend services', 'WooCommerce development', 'API integration services', 'website performance SEO']}
+        path="/services"
       />
 
       <Section

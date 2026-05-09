@@ -36,7 +36,14 @@ export default function BlogDetailPage() {
 
   return (
     <PageTransition>
-      <Seo title={`${post.title} - Devansh Patel`} description={post.excerpt} />
+      <Seo
+        title={post.seo?.title ?? `${post.title} | Devansh Patel`}
+        description={post.seo?.description ?? post.excerpt}
+        keywords={post.seo?.keywords ?? [...post.tags, 'web development journal', 'frontend notes']}
+        path={`/blog/${post.slug}`}
+        ogImageUrl={post.seo?.ogImageUrl ?? post.coverImageUrl}
+        ogType="article"
+      />
 
       <Section spacing="lg">
         <Reveal>

@@ -15,7 +15,13 @@ export default function AboutPage() {
 
   return (
     <PageTransition>
-      <Seo title="About - Devansh Patel" description={about.intro} />
+      <Seo
+        title={about.seo?.title ?? 'About Devansh Patel | Web Developer'}
+        description={about.seo?.description ?? 'Learn about Devansh Patel, a web developer focused on WordPress, WooCommerce, React, TypeScript, Tailwind CSS, and clean API-connected websites.'}
+        keywords={about.seo?.keywords ?? ['Devansh Patel', 'WordPress developer', 'React developer', 'frontend engineer', 'web developer Australia']}
+        path="/about"
+        ogImageUrl={about.seo?.ogImageUrl}
+      />
 
       <Section spacing="lg">
         <Reveal>

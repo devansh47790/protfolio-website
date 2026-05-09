@@ -5,11 +5,20 @@ export const siteSettings: SiteSettings = {
   tagline: 'WordPress and React developer building polished, API-connected websites.',
   email: 'devansh.s.patel149@gmail.com',
   location: 'Available on site / remote / hybrid',
+  // Public production URL. Used to generate canonical links and the sitemap.
+  // Update this when you point your real domain at the deploy.
+  siteUrl: 'https://devanshpatel.dev',
   socials: [
     { label: 'GitHub', href: 'https://github.com/devansh47790' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/devanshpatel149/' },
   ],
   resumeUrl: '/resume.pdf',
+  defaultOgImageUrl: '/project-images/aurum-poultry-co.jpg',
+  seo: {
+    title: 'Devansh Patel | WordPress & React Developer',
+    description: 'Portfolio of Devansh Patel, a WordPress and React developer building WooCommerce websites, custom themes, and API-connected web experiences.',
+    keywords: ['Devansh Patel', 'WordPress developer', 'React developer', 'WooCommerce developer', 'API integration', 'frontend developer'],
+  },
 };
 
 export const homeContent: HomeContent = {
@@ -24,6 +33,11 @@ export const homeContent: HomeContent = {
     { label: 'Years coding', value: '3' },
     { label: 'Core stack', value: 'WP / React / APIs' },
   ],
+  seo: {
+    title: 'Devansh Patel | WordPress, React & API Portfolio',
+    description: 'Explore polished WordPress websites, React frontends, WooCommerce builds, and API-connected portfolio work by Devansh Patel.',
+    keywords: ['WordPress portfolio', 'React portfolio', 'WooCommerce websites', 'custom WordPress theme', 'API portfolio'],
+  },
 };
 
 export const aboutContent: AboutContent = {
@@ -61,4 +75,9 @@ export const aboutContent: AboutContent = {
       description: 'Finished my bachelors in information technology and systems.',
     },
   ],
+  seo: {
+    title: 'About Devansh Patel | Web Developer',
+    description: 'Learn about Devansh Patel, a web developer focused on WordPress, WooCommerce, React, TypeScript, Tailwind CSS, and clean API-connected websites.',
+    keywords: ['Devansh Patel', 'WordPress developer', 'React developer', 'frontend engineer', 'web developer Australia'],
+  },
 };

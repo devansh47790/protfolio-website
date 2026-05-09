@@ -1,5 +1,5 @@
 /*
-  Static services data. Same shape as the future CMS `service` document.
+  Static services data. Same shape as the future Sanity service document.
 */
 import type { Service } from '../types/content';
 
@@ -15,6 +15,11 @@ export const services: Service[] = [
       'Editor-friendly content management',
       'Responsive builds for mobile, tablet, desktop',
     ],
+    seo: {
+      title: 'WordPress Websites | Devansh Patel',
+      description: 'Custom WordPress websites that are polished, responsive, easy to update, and built for practical business content workflows.',
+      keywords: ['WordPress websites', 'custom WordPress theme', 'responsive WordPress development', 'editor friendly CMS'],
+    },
   },
   {
     _id: 's2',
@@ -27,6 +32,11 @@ export const services: Service[] = [
       'TypeScript and Tailwind workflows',
       'Smooth motion and accessible interactions',
     ],
+    seo: {
+      title: 'React Frontends | Devansh Patel',
+      description: 'Modern React frontends for portfolios, dashboards, landing pages, and product surfaces with clean components and responsive UI.',
+      keywords: ['React frontends', 'React developer', 'TypeScript', 'Tailwind CSS', 'frontend architecture'],
+    },
   },
   {
     _id: 's3',
@@ -39,6 +49,11 @@ export const services: Service[] = [
       'Contact forms and automation hooks',
       'Clean loading, empty, and error states',
     ],
+    seo: {
+      title: 'API Integrations | Devansh Patel',
+      description: 'API integration services connecting websites to CMS content, forms, automation tools, dashboards, and third-party platforms.',
+      keywords: ['API integrations', 'REST API developer', 'CMS integration', 'form automation', 'third party API'],
+    },
   },
   {
     _id: 's4',
@@ -51,5 +66,10 @@ export const services: Service[] = [
       'Pre-rendered metadata per page',
       'Robots, sitemap, and Open Graph',
     ],
+    seo: {
+      title: 'Performance Care | Devansh Patel',
+      description: 'Website performance and SEO cleanup for faster loading, better metadata, optimized images, robots, sitemap, and Open Graph.',
+      keywords: ['website performance', 'SEO cleanup', 'image optimization', 'Open Graph', 'technical SEO'],
+    },
   },
 ];

@@ -5,12 +5,24 @@
   Why one shared file?
     - Pages, components, and the data layer all import the same types,
       so changing a field in one place flows everywhere.
-    - When you swap static data for Sanity later, your Sanity schema
-      mirrors these types exactly. The rest of the app doesn't need to change.
+    - The Sanity schema in studio/schemas/* mirrors these shapes exactly,
+      so the rest of the app doesn't change when we switch data source.
 
   Naming convention: every record has an `_id` (mirrors Sanity) and a `slug`
   for anything routed by URL.
 */
+
+/**
+ * Reusable SEO block. Every page-level content type embeds one of these.
+ * The Sanity schema for this lives at studio/schemas/blocks/seo.ts.
+ */
+export interface Seo {
+  title?: string;          // overrides the auto-generated title
+  description?: string;    // <meta name="description">
+  keywords?: string[];     // optional, mostly for client-facing SEO checklists
+  ogImageUrl?: string;     // absolute URL to a 1200x630 image
+  noIndex?: boolean;       // hide from search engines (drafts, staging)
+}
 
 export interface SiteSettings {
   ownerName: string;
@@ -18,8 +30,13 @@ export interface SiteSettings {
   email: string;
   phone?: string;
   location: string;
+  /** Production URL of the site, e.g. https://devanshpatel.dev — used for canonical + sitemap */
+  siteUrl: string;
   socials: { label: string; href: string }[];
   resumeUrl?: string;
+  /** Default OG image used when a page doesn't override. */
+  defaultOgImageUrl?: string;
+  seo?: Seo;
 }
 
 export interface HomeContent {
@@ -29,6 +46,7 @@ export interface HomeContent {
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
   highlightStats: { label: string; value: string }[];
+  seo?: Seo;
 }
 
 export interface AboutContent {
@@ -36,6 +54,7 @@ export interface AboutContent {
   story: string[];        // paragraphs
   skills: string[];
   timeline: { year: string; title: string; description: string }[];
+  seo?: Seo;
 }
 
 export interface Service {
@@ -43,8 +62,9 @@ export interface Service {
   slug: string;
   title: string;
   summary: string;
-  icon: string;           // lucide-style key, but we use inline SVG (see ui/icons)
+  icon: string;           // key into ui icon set
   bullets: string[];
+  seo?: Seo;
 }
 
 export interface Project {
@@ -54,7 +74,7 @@ export interface Project {
   summary: string;
   category: string;       // used by the filter on /projects
   tags: string[];
-  imageUrl?: string;
+  imageUrl?: string;      // hero image for the detail page + card
   coverColor: string;     // tailwind gradient class for the placeholder cover
   featured: boolean;
   liveUrl?: string;
@@ -64,6 +84,7 @@ export interface Project {
   approach: string[];
   outcomes: string[];
   date: string;           // ISO date
+  seo?: Seo;
 }
 
 export interface BlogPost {
@@ -71,10 +92,12 @@ export interface BlogPost {
   slug: string;
   title: string;
   excerpt: string;
-  body: string[];         // paragraphs of plain text (Markdown later)
+  body: string[];         // paragraphs of plain text (Portable Text in Sanity later)
   tags: string[];
   publishedAt: string;    // ISO date
   readingMinutes: number;
+  coverImageUrl?: string;
+  seo?: Seo;
 }
 
 export interface Testimonial {
@@ -83,4 +106,5 @@ export interface Testimonial {
   author: string;
   role: string;
   company: string;
+  avatarUrl?: string;
 }

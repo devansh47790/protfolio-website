@@ -22,7 +22,10 @@ export default function ProjectCard({ project }: Props) {
               className="absolute inset-0 h-full w-full object-cover"
             />
           ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(28,27,27,0.08)_1px,transparent_1px)] bg-[length:18px_18px] opacity-50" aria-hidden />
+            <div
+              className="absolute inset-0 bg-[radial-gradient(circle,rgba(28,27,27,0.08)_1px,transparent_1px)] bg-[length:18px_18px] opacity-50"
+              aria-hidden
+            />
           )}
           <div className="absolute inset-0 bg-charcoal-900/35" aria-hidden />
           <div className="absolute bottom-6 left-6 right-6 text-surface-50">

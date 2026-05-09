@@ -6,16 +6,20 @@ import Reveal from '../components/ui/Reveal';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import Seo from '../components/seo/Seo';
-import { getProjectBySlug } from '../lib/cms';
-import type { Project } from '../types/content';
+import JsonLd from '../components/seo/JsonLd';
+import { getProjectBySlug, getSiteSettings } from '../lib/cms';
+import { projectSchema, breadcrumbsSchema } from '../lib/seo';
+import type { Project, SiteSettings } from '../types/content';
 
 export default function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const [project, setProject] = useState<Project | null | undefined>(undefined);
+  const [site, setSite] = useState<SiteSettings | null>(null);
 
   useEffect(() => {
     if (!slug) return;
     getProjectBySlug(slug).then(setProject);
+    getSiteSettings().then(setSite);
   }, [slug]);
 
   if (project === undefined) {
@@ -37,7 +41,26 @@ export default function ProjectDetailPage() {
 
   return (
     <PageTransition>
-      <Seo title={`${project.title} - Devansh Patel`} description={project.summary} />
+      <Seo
+        title={project.seo?.title ?? `${project.title} | Devansh Patel`}
+        description={project.seo?.description ?? project.summary}
+        keywords={project.seo?.keywords ?? [project.title, project.category, ...project.tags, 'WordPress portfolio', 'website project']}
+        path={`/projects/${project.slug}`}
+        ogImageUrl={project.seo?.ogImageUrl ?? project.imageUrl}
+      />
+      {site && (
+        <>
+          <JsonLd id={`project-${project.slug}`} data={projectSchema(project, site)} />
+          <JsonLd
+            id={`breadcrumbs-${project.slug}`}
+            data={breadcrumbsSchema(site, [
+              { name: 'Home', path: '/' },
+              { name: 'Projects', path: '/projects' },
+              { name: project.title, path: `/projects/${project.slug}` },
+            ])}
+          />
+        </>
+      )}
 
       <Section spacing="lg">
         <Reveal>

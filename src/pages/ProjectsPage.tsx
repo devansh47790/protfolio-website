@@ -24,7 +24,12 @@ export default function ProjectsPage() {
 
   return (
     <PageTransition>
-      <Seo title="Projects - Devansh Patel" description="React portfolio work, WordPress websites, WooCommerce builds, and custom theme projects." />
+      <Seo
+        title="WordPress & React Portfolio | Devansh Patel"
+        description="Explore WordPress, WooCommerce, company portfolio, and React projects built by Devansh Patel for service businesses, trades, healthcare, and professional brands."
+        keywords={['WordPress portfolio', 'React portfolio', 'WooCommerce projects', 'custom WordPress theme', 'company portfolio websites']}
+        path="/projects"
+      />
 
       <Section
         spacing="lg"

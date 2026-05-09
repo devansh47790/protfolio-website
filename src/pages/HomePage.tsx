@@ -6,22 +6,29 @@ import Button from '../components/ui/Button';
 import ProjectCard from '../components/sections/ProjectCard';
 import ServiceCard from '../components/sections/ServiceCard';
 import Seo from '../components/seo/Seo';
+import JsonLd from '../components/seo/JsonLd';
 import { useContent } from '../hooks/useContent';
 import {
-  getHomeContent, getFeaturedProjects, getServices,
+  getHomeContent, getFeaturedProjects, getServices, getSiteSettings,
 } from '../lib/cms';
+import { personSchema } from '../lib/seo';
 
 export default function HomePage() {
   const { data: home } = useContent(getHomeContent);
   const { data: featured } = useContent(getFeaturedProjects);
   const { data: services } = useContent(getServices);
+  const { data: site } = useContent(getSiteSettings);
 
   return (
     <PageTransition>
       <Seo
-        title="Devansh Patel - Frontend Engineer"
-        description="WordPress, React, and API portfolio work by Devansh Patel."
+        title={home?.seo?.title ?? 'Devansh Patel | WordPress, React & API Portfolio'}
+        description={home?.seo?.description ?? 'Explore polished WordPress websites, React frontends, WooCommerce builds, and API-connected portfolio work by Devansh Patel.'}
+        keywords={home?.seo?.keywords ?? ['WordPress developer', 'React developer', 'WooCommerce developer', 'API integration', 'portfolio website developer']}
+        path="/"
+        ogImageUrl={home?.seo?.ogImageUrl}
       />
+      {site && <JsonLd id="person" data={personSchema(site)} />}
 
       {home && <Hero content={home} />}
 

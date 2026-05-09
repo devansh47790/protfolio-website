@@ -20,7 +20,12 @@ export default function ContactPage() {
 
   return (
     <PageTransition>
-      <Seo title="Contact - Devansh Patel" description="Get in touch about a project or role." />
+      <Seo
+        title="Contact Devansh Patel | Web Developer"
+        description="Contact Devansh Patel for WordPress websites, React frontends, WooCommerce builds, API integrations, and portfolio website projects."
+        keywords={['contact web developer', 'hire WordPress developer', 'React developer contact', 'WooCommerce developer', 'API website project']}
+        path="/contact"
+      />
 
       <Section spacing="lg">
         <Reveal>
