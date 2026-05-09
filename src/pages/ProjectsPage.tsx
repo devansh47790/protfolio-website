@@ -35,6 +35,7 @@ export default function ProjectsPage() {
         spacing="lg"
         eyebrow="Projects"
         heading="WordPress website portfolio"
+        headingLevel="h1"
         description="A collection of React portfolio work, WordPress builds, WooCommerce sites, company portfolios, and WordPress custom themes. Use the filter to narrow by category."
       >
         <div className="mb-8 flex flex-wrap gap-2">

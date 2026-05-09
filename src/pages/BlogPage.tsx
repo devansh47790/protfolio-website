@@ -18,6 +18,7 @@ export default function BlogPage() {
         spacing="lg"
         eyebrow="Journal draft"
         heading="Notes are coming soon"
+        headingLevel="h1"
         description="This section is parked for now while the portfolio content is tightened. Future posts will cover WordPress builds, React frontends, API integrations, and practical website craft."
       >
         <Reveal>

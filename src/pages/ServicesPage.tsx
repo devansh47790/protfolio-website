@@ -22,6 +22,7 @@ export default function ServicesPage() {
         spacing="lg"
         eyebrow="Services draft"
         heading="Website services are being refined"
+        headingLevel="h1"
         description="For now, the focus is simple: custom WordPress sites, React frontends, and API integrations for portfolios and business websites."
       >
         <div className="grid gap-6 sm:grid-cols-2">

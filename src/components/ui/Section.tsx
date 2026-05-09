@@ -8,6 +8,7 @@ interface Props {
   spacing?: 'sm' | 'md' | 'lg';
   eyebrow?: string;
   heading?: string;
+  headingLevel?: 'h1' | 'h2';
   description?: string;
 }
 
@@ -24,15 +25,18 @@ export default function Section({
   spacing = 'md',
   eyebrow,
   heading,
+  headingLevel = 'h2',
   description,
 }: Props) {
+  const Heading = headingLevel;
+
   return (
     <section id={id} className={cn(spacings[spacing], className)}>
       <div className="container-page">
         {(eyebrow || heading || description) && (
           <div className="mb-10 max-w-2xl md:mb-12">
             {eyebrow && <p className="caption text-gold-500">{eyebrow}</p>}
-            {heading && <h2 className="mt-4">{heading}</h2>}
+            {heading && <Heading className="mt-4">{heading}</Heading>}
             {description && (
               <p className="mt-4 text-body-lg text-charcoal-500">{description}</p>
             )}
