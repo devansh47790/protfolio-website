@@ -1,10 +1,29 @@
+import { useEffect, useState } from 'react';
 import PageTransition from '../components/layout/PageTransition';
 import Section from '../components/ui/Section';
 import Reveal from '../components/ui/Reveal';
+import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
+import Card from '../components/ui/Card';
 import Seo from '../components/seo/Seo';
+import { getBlogPosts } from '../lib/cms';
+import type { BlogPost } from '../types/content';
+
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
 
 export default function BlogPage() {
+  const [posts, setPosts] = useState<BlogPost[] | undefined>(undefined);
+
+  useEffect(() => {
+    getBlogPosts().then(setPosts);
+  }, []);
+
   return (
     <PageTransition>
       <Seo
@@ -16,25 +35,61 @@ export default function BlogPage() {
 
       <Section
         spacing="lg"
-        eyebrow="Journal draft"
-        heading="Notes are coming soon"
+        eyebrow="Journal"
+        heading="Notes on web craft"
         headingLevel="h1"
-        description="This section is parked for now while the portfolio content is tightened. Future posts will cover WordPress builds, React frontends, API integrations, and practical website craft."
+        description="Practical notes on WordPress builds, React frontends, API integrations, performance, SEO, and maintainable website craft."
       >
-        <Reveal>
-          <div className="border border-surface-400 bg-surface-100 p-8 md:p-12">
-            <h2 className="text-h3">Planned topics</h2>
-            <ul className="mt-6 grid gap-4 text-body-lg text-charcoal-700 sm:grid-cols-2">
-              <li className="border-t border-surface-400 pt-4">WordPress sites that clients can actually maintain</li>
-              <li className="border-t border-surface-400 pt-4">When to use React instead of a traditional CMS theme</li>
-              <li className="border-t border-surface-400 pt-4">Connecting portfolio content through clean APIs</li>
-              <li className="border-t border-surface-400 pt-4">Performance checks before launching a small website</li>
-            </ul>
-            <div className="mt-8">
-              <Button to="/contact" variant="secondary">Suggest a topic</Button>
-            </div>
+        {posts === undefined ? (
+          <p className="text-charcoal-500">Loading posts...</p>
+        ) : posts.length > 0 ? (
+          <div className="grid gap-6 md:grid-cols-2">
+            {posts.map((post, index) => (
+              <Reveal key={post._id} delay={index * 0.05}>
+                <Card hoverable className="flex h-full flex-col">
+                  {post.coverImageUrl && (
+                    <img
+                      src={post.coverImageUrl}
+                      alt=""
+                      className="-mx-8 -mt-8 mb-7 aspect-[16/9] w-[calc(100%+4rem)] object-cover"
+                    />
+                  )}
+                  <p className="caption text-charcoal-500">
+                    {formatDate(post.publishedAt)}
+                    {' / '}
+                    {post.readingMinutes} min read
+                  </p>
+                  <h2 className="mt-3 text-h3">{post.title}</h2>
+                  <p className="mt-4 flex-1 text-body-lg text-charcoal-500">{post.excerpt}</p>
+                  {post.tags.length > 0 && (
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {post.tags.map((tag) => (
+                        <Badge key={tag}>{tag}</Badge>
+                      ))}
+                    </div>
+                  )}
+                  <div className="mt-7">
+                    <Button to={`/blog/${post.slug}`} variant="text">
+                      Read article
+                    </Button>
+                  </div>
+                </Card>
+              </Reveal>
+            ))}
           </div>
-        </Reveal>
+        ) : (
+          <Reveal>
+            <div className="border border-surface-400 bg-surface-100 p-8 md:p-12">
+              <h2 className="text-h3">Notes are coming soon</h2>
+              <p className="mt-4 text-body-lg text-charcoal-500">
+                This section is ready for published posts from Sanity.
+              </p>
+              <div className="mt-8">
+                <Button to="/contact" variant="secondary">Suggest a topic</Button>
+              </div>
+            </div>
+          </Reveal>
+        )}
       </Section>
     </PageTransition>
   );
