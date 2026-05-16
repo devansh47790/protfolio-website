@@ -12,9 +12,10 @@ import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
-
+import usePageTracking from './hooks/usePageTracking';
 export default function App() {
   const location = useLocation();
+  usePageTracking();
 
   return (
     <div className="flex min-h-screen flex-col">
