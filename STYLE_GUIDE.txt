@@ -1,0 +1,258 @@
+AKIME PORTFOLIO STYLE GUIDE
+===========================
+
+Brand Mood
+----------
+The website uses a quiet editorial portfolio style: warm neutral surfaces,
+strong charcoal typography, and restrained gold accents. It feels professional,
+calm, premium, and content-focused rather than flashy or overly corporate.
+
+
+Color Palette
+-------------
+
+Primary Background: Surface / Warm Stone
+- #ebe7e6  Main page background
+- Used for the global body background
+- Gives the site a soft, warm, paper-like base
+
+Light Surfaces
+- #ffffff  Surface 50
+- #f8f5f4  Surface bright
+- #f7f3f2  Surface 100
+- #f1edec  Surface 200
+- #e5e2e1  Surface 400
+
+Use these for cards, panels, section contrast, form fields, and subtle page
+layering.
+
+Text / Charcoal
+- #1c1b1b  Main text
+- #000000  Strongest text / dark blocks
+- #444748  Secondary dark text
+- #858383  Muted text
+- #c8c6c5  Pale text / borders
+
+This gives the interface strong readability while staying softer than pure
+black everywhere.
+
+Accent / Gold
+- #fed65b  Primary gold highlight
+- #e9c349  Active border / accent
+- #735c00  Darker gold text
+- #574500  Deep gold
+
+Gold is used sparingly for captions, links, focus states, highlights, and small
+interaction details.
+
+Utility / Danger
+- #ba1a1a  Error
+- #ffdad6  Soft error background
+- #93000a  Deep error
+
+
+Color Usage Rules
+-----------------
+- Use warm surface colors for most layouts.
+- Use charcoal for headings, body text, navigation, buttons, and footer contrast.
+- Use gold only as an accent: eyebrow labels, hover states, secondary button
+  borders, active highlights, and selection background.
+- Avoid using gold as a large background color. It should feel intentional, not
+  decorative.
+
+
+Typography
+----------
+
+Primary Sans Font: Inter
+- Used for body copy, navigation, buttons, forms, captions, and UI labels.
+- Weights loaded: 400, 500, 600, 700.
+- Role: clean, modern, highly readable.
+
+Display Font: Noto Serif
+- Used for headings.
+- Weights loaded: 400, 500, 700.
+- Role: editorial, refined, personal.
+
+Fallback stacks:
+- Inter, system-ui, sans-serif
+- "Noto Serif", Georgia, serif
+
+
+Type Scale
+----------
+
+H1
+- Desktop: 64px
+- Mobile: 44px
+- Line height: 1.08-1.1
+- Font: Noto Serif
+- Weight: 400
+
+H2
+- Desktop: 48px
+- Mobile: 32px
+- Line height: 1.2
+- Font: Noto Serif
+
+H3
+- Size: 32px
+- Line height: 1.3
+- Font: Noto Serif
+
+H4
+- Size: 24px
+- Line height: 1.4
+- Font: Noto Serif
+
+Large Body
+- Size: 18px
+- Line height: 1.6
+- Font: Inter
+
+Body
+- Size: 16px
+- Line height: 1.6
+- Font: Inter
+
+Caption
+- Size: 12px
+- Uppercase
+- Font weight: 600
+- Letter spacing: 0.1em
+
+
+Typography Rules
+----------------
+- Headings should feel calm and editorial, not loud.
+- Body copy should stay spacious with 1.6 line height.
+- Captions are always uppercase and used for section eyebrows, categories,
+  metadata, and small navigational labels.
+- Letter spacing is generally 0, except captions.
+
+
+Layout System
+-------------
+
+Container
+- Max width: 1440px
+- Mobile horizontal padding: 24px
+- Small screen horizontal padding: 40px
+- Large screen horizontal padding: 48px
+- Extra large horizontal padding: 64px
+
+Spacing Scale
+- Unit: 8px
+- Small: 16px
+- Gutter: 32px
+- Edge: 64px
+- Section: 128px
+
+Section Padding
+- Small: py-12 md:py-16 lg:py-20
+- Medium: py-14 md:py-20 lg:py-24
+- Large: py-16 md:py-24 lg:py-28
+
+Consecutive sections reduce bottom spacing for a more consistent visual rhythm.
+
+
+Shape Language
+--------------
+The site uses sharp, square geometry.
+
+Border Radius
+- Most elements: 0
+- Pills/full elements only: 9999px
+
+This gives the site a more crafted, editorial, architectural feel.
+
+
+Buttons
+-------
+
+Primary Button
+- Charcoal background
+- Light text
+- Used for main calls to action
+
+Secondary Button
+- Transparent background
+- Gold border
+- Charcoal text
+- Gold fill on hover
+
+Text Button
+- Gold underline
+- Used for subtle navigation links like "Read article" or "View project"
+
+Button Text
+- Uppercase
+- Medium weight
+- Letter spacing: 0.1em
+
+
+Cards & Panels
+--------------
+Cards use:
+- bg-surface-100
+- border-surface-400
+- Square corners
+- Generous padding
+
+Hover state:
+- Slight upward movement
+- Gold-tinted border
+- Soft shadow
+
+Panels should feel structured and quiet, not like floating glass cards.
+
+
+Forms
+-----
+Inputs use:
+- White / light surface background
+- Surface border
+- Charcoal text
+- Gold border on focus
+
+Focus state:
+- 0 0 0 1px #1c1b1b
+
+
+Imagery
+-------
+Project imagery should be:
+- Cropped cleanly
+- Full-width inside cards
+- object-fit: cover
+- Slightly darkened with overlay when text appears on top
+
+Use image overlays to maintain text contrast.
+
+
+Motion
+------
+Motion is subtle and functional.
+
+Reveal Animation
+- Fade in
+- Move up slightly
+- Duration: 0.55s
+- Ease: easeOut
+
+Hover Animation
+- Slight vertical lift
+- No exaggerated scaling
+
+Motion should make the site feel polished, not playful.
+
+
+Design Principles
+-----------------
+1. Warm, minimal, editorial.
+2. Typography carries the brand.
+3. Gold is an accent, not a theme.
+4. Sharp corners create a confident visual system.
+5. Spacious layout improves readability.
+6. Interactions should be subtle and purposeful.
+7. Content should always feel more important than decoration.
