@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Update this URL when you point a domain at the deploy.
-Sitemap: https://devanshpatel.dev/sitemap.xml
+Sitemap: https://akime.com.au/sitemap.xml

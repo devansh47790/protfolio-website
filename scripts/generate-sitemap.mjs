@@ -50,6 +50,23 @@ ${items}
 
 import { readFile } from 'node:fs/promises';
 
+async function loadLocalEnv() {
+  try {
+    const src = await readFile(resolve(ROOT, '.env.local'), 'utf8');
+    for (const line of src.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+      const index = trimmed.indexOf('=');
+      if (index === -1) continue;
+      const key = trimmed.slice(0, index).trim();
+      const value = trimmed.slice(index + 1).trim();
+      process.env[key] ||= value;
+    }
+  } catch {
+    // .env.local is optional in CI; static data below remains the fallback.
+  }
+}
+
 async function readSlugs(file, exportName) {
   const src = await readFile(resolve(ROOT, file), 'utf8');
   // Match `slug: 'foo-bar'` inside the array entries.
@@ -67,11 +84,34 @@ async function readSiteUrl() {
   return m ? m[1].replace(/\/$/, '') : 'https://example.com';
 }
 
+async function readSanitySlugs(type) {
+  const projectId = process.env.VITE_SANITY_PROJECT_ID;
+  const dataset = process.env.VITE_SANITY_DATASET || 'production';
+  const apiVersion = process.env.VITE_SANITY_API_VERSION || '2024-10-01';
+  if (!projectId) return null;
+
+  const query = `*[_type == "${type}" && defined(slug.current)]{"slug": slug.current}`;
+  const url = `https://${projectId}.apicdn.sanity.io/v${apiVersion}/data/query/${dataset}?query=${encodeURIComponent(query)}`;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Sanity sitemap query failed for ${type}: ${response.status}`);
+  const data = await response.json();
+  return data.result.map((item) => item.slug).filter(Boolean);
+}
+
 // --------- Build & write --------------------------------------------
 
+await loadLocalEnv();
+
 const siteUrl = await readSiteUrl();
-const projectSlugs = await readSlugs('src/data/projects.ts', 'projects');
-const blogSlugs = await readSlugs('src/data/blogPosts.ts', 'blogPosts');
+let projectSlugs = await readSlugs('src/data/projects.ts', 'projects');
+let blogSlugs = await readSlugs('src/data/blogPosts.ts', 'blogPosts');
+
+try {
+  projectSlugs = await readSanitySlugs('project') ?? projectSlugs;
+  blogSlugs = await readSanitySlugs('blogPost') ?? blogSlugs;
+} catch (error) {
+  console.warn(`Falling back to static slugs for sitemap: ${error.message}`);
+}
 
 const today = new Date().toISOString().slice(0, 10);
 

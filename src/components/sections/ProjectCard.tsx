@@ -5,6 +5,11 @@ import type { Project } from '../../types/content';
 
 interface Props { project: Project }
 
+function sizedImageUrl(url: string, width: number) {
+  const separator = url.includes('?') ? '&' : '?';
+  return `${url}${separator}auto=format&w=${width}&q=75&fit=max`;
+}
+
 export default function ProjectCard({ project }: Props) {
   return (
     <motion.div
@@ -16,9 +21,16 @@ export default function ProjectCard({ project }: Props) {
         <div className={`relative aspect-[4/3] w-full bg-gradient-to-br ${project.coverColor}`}>
           {project.imageUrl ? (
             <img
-              src={project.imageUrl}
+              src={sizedImageUrl(project.imageUrl, 720)}
+              srcSet={[
+                `${sizedImageUrl(project.imageUrl, 480)} 480w`,
+                `${sizedImageUrl(project.imageUrl, 720)} 720w`,
+                `${sizedImageUrl(project.imageUrl, 960)} 960w`,
+              ].join(', ')}
+              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
               alt=""
               loading="lazy"
+              decoding="async"
               className="absolute inset-0 h-full w-full object-cover"
             />
           ) : (
