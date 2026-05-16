@@ -31,7 +31,7 @@ export default function Section({
   const Heading = headingLevel;
 
   return (
-    <section id={id} className={cn(spacings[spacing], className)}>
+    <section id={id} className={cn('site-section', spacings[spacing], className)}>
       <div className="container-page">
         {(eyebrow || heading || description) && (
           <div className="mb-10 max-w-2xl md:mb-12">
