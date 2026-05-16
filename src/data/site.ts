@@ -7,7 +7,7 @@ export const siteSettings: SiteSettings = {
   location: 'Available on site / remote / hybrid',
   // Public production URL. Used to generate canonical links and the sitemap.
   // Update this when you point your real domain at the deploy.
-  siteUrl: 'https://devanshpatel.dev',
+  siteUrl: 'https://akime.com.au',
   socials: [
     { label: 'GitHub', href: 'https://github.com/devansh47790' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/devanshpatel149/' },
