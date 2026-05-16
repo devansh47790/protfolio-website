@@ -92,13 +92,29 @@ export interface BlogPost {
   slug: string;
   title: string;
   excerpt: string;
-  body: string[];         // paragraphs of plain text (Portable Text in Sanity later)
+  body: BlogBodyBlock[];  // plain text paragraphs locally, Portable Text blocks from Sanity
   tags: string[];
   publishedAt: string;    // ISO date
   readingMinutes: number;
   coverImageUrl?: string;
   seo?: Seo;
 }
+
+export type BlogBodyBlock =
+  | string
+  | {
+      _key?: string;
+      _type: 'block';
+      style?: 'normal' | 'h2' | 'h3' | 'blockquote';
+      listItem?: 'bullet' | 'number';
+      children?: { _key?: string; text?: string }[];
+    }
+  | {
+      _key?: string;
+      _type: 'image';
+      imageUrl?: string;
+      alt?: string;
+    };
 
 export interface Testimonial {
   _id: string;

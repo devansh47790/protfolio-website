@@ -6,7 +6,52 @@ import Reveal from '../components/ui/Reveal';
 import Badge from '../components/ui/Badge';
 import Seo from '../components/seo/Seo';
 import { getBlogPostBySlug } from '../lib/cms';
-import type { BlogPost } from '../types/content';
+import type { BlogBodyBlock, BlogPost } from '../types/content';
+
+function blockText(block: Extract<BlogBodyBlock, { _type: 'block' }>) {
+  return block.children?.map((child) => child.text ?? '').join('') ?? '';
+}
+
+function BlogBody({ body }: { body: BlogBodyBlock[] }) {
+  return (
+    <article className="max-w-prose space-y-6 text-body-lg leading-relaxed text-charcoal-700">
+      {body.map((block, i) => {
+        if (typeof block === 'string') {
+          return <p key={i}>{block}</p>;
+        }
+
+        const key = block._key ?? i;
+
+        if (block._type === 'image') {
+          if (!block.imageUrl) return null;
+          return (
+            <figure key={key} className="space-y-2">
+              <img src={block.imageUrl} alt={block.alt ?? ''} className="w-full border border-surface-400 object-cover" />
+              {block.alt && <figcaption className="text-body-sm text-charcoal-500">{block.alt}</figcaption>}
+            </figure>
+          );
+        }
+
+        const text = blockText(block);
+        if (!text) return null;
+
+        if (block.style === 'h2') return <h2 key={key} className="text-h3 text-charcoal-900">{text}</h2>;
+        if (block.style === 'h3') return <h3 key={key} className="text-h4 text-charcoal-900">{text}</h3>;
+        if (block.style === 'blockquote') {
+          return (
+            <blockquote key={key} className="border-l-2 border-gold-300 pl-5 font-serif text-xl italic text-charcoal-700">
+              {text}
+            </blockquote>
+          );
+        }
+        if (block.listItem === 'bullet') return <li key={key} className="ml-6 list-disc">{text}</li>;
+        if (block.listItem === 'number') return <li key={key} className="ml-6 list-decimal">{text}</li>;
+
+        return <p key={key}>{text}</p>;
+      })}
+    </article>
+  );
+}
 
 export default function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -62,11 +107,7 @@ export default function BlogDetailPage() {
 
       <Section>
         <Reveal>
-          <article className="max-w-prose space-y-6 text-body-lg leading-relaxed text-charcoal-700">
-            {post.body.map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
-          </article>
+          <BlogBody body={post.body} />
         </Reveal>
       </Section>
     </PageTransition>

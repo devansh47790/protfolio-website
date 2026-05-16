@@ -121,7 +121,16 @@ export async function getServices(): Promise<Service[]> {
 }
 
 const BLOG_PROJECTION = `
-  _id, "slug": slug.current, title, excerpt, body, tags, publishedAt, readingMinutes,
+  _id, "slug": slug.current, title, excerpt,
+  body[]{
+    ...,
+    _type == "image" => {
+      ...,
+      "imageUrl": asset->url,
+      alt
+    }
+  },
+  tags, publishedAt, readingMinutes,
   "coverImageUrl": coverImage.asset->url,
   ${SEO_PROJECTION}
 `;
