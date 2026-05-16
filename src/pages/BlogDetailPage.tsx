@@ -98,7 +98,7 @@ export default function BlogDetailPage() {
             {' / '}
             {post.readingMinutes} min read
           </p>
-          <h1 className="mt-2 max-w-3xl">{post.title}</h1>
+          <h1 className="mt-2 max-w-6xl">{post.title}</h1>
           <div className="mt-4 flex flex-wrap gap-2">
             {post.tags.map((t) => <Badge key={t}>{t}</Badge>)}
           </div>
@@ -106,9 +106,7 @@ export default function BlogDetailPage() {
       </Section>
 
       <Section>
-        <Reveal>
-          <BlogBody body={post.body} />
-        </Reveal>
+        <BlogBody body={post.body} />
       </Section>
     </PageTransition>
   );
