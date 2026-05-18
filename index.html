@@ -10,6 +10,28 @@
     <title>Devansh Patel - Portfolio</title>
     <meta name="description" content="Portfolio, projects, and writing by Devansh Patel." />
     <meta name="theme-color" content="#000000" />
+    <script>
+      (function () {
+        var canonicalHost = 'akime.com.au';
+        var canonicalOrigin = 'https://' + canonicalHost;
+        var canonicalUrl = canonicalOrigin + window.location.pathname + window.location.search;
+
+        if (window.location.hostname !== canonicalHost) {
+          window.location.replace(canonicalUrl + window.location.hash);
+          return;
+        }
+
+        var canonical = document.createElement('link');
+        canonical.rel = 'canonical';
+        canonical.href = canonicalUrl;
+        document.head.appendChild(canonical);
+
+        var robots = document.createElement('meta');
+        robots.name = 'robots';
+        robots.content = 'index, follow';
+        document.head.appendChild(robots);
+      })();
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
