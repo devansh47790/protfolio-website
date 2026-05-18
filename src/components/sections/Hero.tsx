@@ -17,28 +17,34 @@ export default function Hero({ content }: Props) {
           {content.heroEyebrow}
         </motion.p>
 
+        {/*
+          h1 is the LCP element — do NOT start it at opacity:0.
+          Starting invisible delays the browser's LCP measurement.
+          We animate only the y-position (a CSS transform) which has
+          zero impact on layout shift.
+        */}
         <motion.h1
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.05 }}
+          initial={{ y: 10 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           className="mt-8 max-w-4xl"
         >
           {content.heroHeadline}
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.1 }}
+          transition={{ duration: 0.5, delay: 0.08 }}
           className="mt-8 max-w-2xl text-body-lg text-charcoal-500"
         >
           {content.heroSubhead}
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.15 }}
+          transition={{ duration: 0.5, delay: 0.14 }}
           className="mt-12 flex flex-wrap gap-4"
         >
           <Button to={content.primaryCta.href} size="lg">

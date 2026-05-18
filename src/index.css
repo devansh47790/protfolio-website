@@ -2,6 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Fallback font declarations with adjusted metrics.
+
+  When the browser renders text before Inter/Noto Serif have loaded it uses
+  a system font. Without metric matching the system font has different glyph
+  sizes, so when the web font swaps in the text reflows → layout shift (CLS).
+
+  `size-adjust`, `ascent-override`, `descent-override`, and `line-gap-override`
+  scale the fallback font so its glyphs occupy the same space as the web font.
+  When the real font swaps in, text barely moves → near-zero CLS from FOUT.
+*/
+
+/* Inter → Arial fallback */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+/* Noto Serif → Georgia fallback */
+@font-face {
+  font-family: 'Noto Serif Fallback';
+  src: local('Georgia');
+  size-adjust: 103%;
+  ascent-override: 91%;
+  descent-override: 21%;
+  line-gap-override: 0%;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
