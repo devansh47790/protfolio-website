@@ -43,11 +43,11 @@ export default {
         danger: { DEFAULT: '#ba1a1a', soft: '#ffdad6', deep: '#93000a' },
       },
       fontFamily: {
-        // The fallback fonts have adjusted metrics (see index.css @font-face)
-        // so they occupy the same space as the web fonts before they load.
-        // This keeps CLS near zero when fonts swap in.
-        display: ['"Noto Serif"', '"Noto Serif Fallback"', 'Georgia', 'serif'],
-        sans: ['Inter', '"Inter Fallback"', 'system-ui', 'sans-serif'],
+        // @fontsource-variable registers fonts as '<Name> Variable'.
+        // The fallback fonts (see index.css) have adjusted metrics so they
+        // match the variable font's glyph sizes — near-zero CLS on swap.
+        display: ['"Noto Serif Variable"', '"Noto Serif Fallback"', 'Georgia', 'serif'],
+        sans: ['"Inter Variable"', '"Inter Fallback"', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         h1: ['64px', { lineHeight: '1.1', letterSpacing: '0' }],

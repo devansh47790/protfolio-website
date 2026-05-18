@@ -33,38 +33,11 @@
       })();
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://2gm1jzpw.apicdn.sanity.io" crossorigin />
-
     <!--
-      Google Fonts — non-blocking + no layout shift strategy:
-
-      1. `display=optional` tells the browser: "if the font isn't ready before
-         the first paint, use the fallback for this entire page load — don't
-         swap later." Combined with the metric-matched fallbacks in index.css,
-         the page looks nearly identical whether the web font loads or not,
-         and there is zero CLS from font swapping.
-
-      2. `rel="preload" as="style"` downloads the CSS in the background
-         without blocking the initial render. The onload swap applies it
-         once ready.
-
-      3. On subsequent visits the font files are already cached by the browser,
-         so `display=optional` happily uses them from the first paint.
+      Fonts are self-hosted via @fontsource-variable (imported in main.tsx).
+      No external requests needed — preconnects to Google Fonts removed.
     -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,500;0,700;1,400&display=optional"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,500;0,700;1,400&display=optional"
-      />
-    </noscript>
+    <link rel="preconnect" href="https://2gm1jzpw.apicdn.sanity.io" crossorigin />
   </head>
   <body>
     <div id="root"></div>

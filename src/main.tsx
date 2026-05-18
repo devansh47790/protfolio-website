@@ -14,6 +14,25 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import TagManager from 'react-gtm-module';
+
+/*
+  Self-hosted fonts via @fontsource-variable.
+
+  Why this is better than Google Fonts:
+  - Zero external DNS lookups / TCP handshakes — fonts come from YOUR domain
+  - Variable fonts = one .woff2 file covers all weights (400–700) instead of
+    4 separate downloads
+  - Fonts are bundled into your Vite build and cached with the rest of your
+    static assets
+  - No privacy concerns (requests never leave your server)
+
+  Before running `npm run dev` or building, install the packages once:
+    npm install @fontsource-variable/inter @fontsource-variable/noto-serif
+*/
+import '@fontsource-variable/inter';
+import '@fontsource-variable/noto-serif';           // upright (normal)
+import '@fontsource-variable/noto-serif/wght-italic.css'; // italic
+
 import './index.css';
 import App from './App';
 

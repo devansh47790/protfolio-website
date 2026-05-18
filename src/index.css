@@ -14,7 +14,14 @@
   When the real font swaps in, text barely moves → near-zero CLS from FOUT.
 */
 
-/* Inter → Arial fallback */
+/*
+  Metric-matched fallbacks for the variable fonts.
+  The family names here must match the second entry in tailwind.config.js
+  fontFamily arrays — Tailwind will use them when 'Inter Variable' /
+  'Noto Serif Variable' haven't loaded yet.
+*/
+
+/* Inter Variable → Arial fallback */
 @font-face {
   font-family: 'Inter Fallback';
   src: local('Arial');
@@ -24,7 +31,7 @@
   line-gap-override: 0%;
 }
 
-/* Noto Serif → Georgia fallback */
+/* Noto Serif Variable → Georgia fallback */
 @font-face {
   font-family: 'Noto Serif Fallback';
   src: local('Georgia');
