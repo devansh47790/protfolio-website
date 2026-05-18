@@ -12,12 +12,20 @@ import {
   getHomeContent, getFeaturedProjects, getServices, getSiteSettings,
 } from '../lib/cms';
 import { personSchema } from '../lib/seo';
+import { homeContent as staticHome, siteSettings as staticSite } from '../data/site';
+import { projects as staticProjects } from '../data/projects';
+import { services as staticServices } from '../data/services';
 
 export default function HomePage() {
-  const { data: home } = useContent(getHomeContent);
-  const { data: featured } = useContent(getFeaturedProjects);
-  const { data: services } = useContent(getServices);
-  const { data: site } = useContent(getSiteSettings);
+  // Pass static data as initial values so the page renders immediately on
+  // first paint. Sanity data silently replaces it once the fetch completes.
+  const { data: home } = useContent(getHomeContent, staticHome);
+  const { data: featured } = useContent(
+    getFeaturedProjects,
+    staticProjects.filter((p) => p.featured),
+  );
+  const { data: services } = useContent(getServices, staticServices);
+  const { data: site } = useContent(getSiteSettings, staticSite);
 
   return (
     <PageTransition>
@@ -30,7 +38,7 @@ export default function HomePage() {
       />
       {site && <JsonLd id="person" data={personSchema(site)} />}
 
-      {home && <Hero content={home} />}
+      <Hero content={home} />
 
       <Section
         eyebrow="Selected work"

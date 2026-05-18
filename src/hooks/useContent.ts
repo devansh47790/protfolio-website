@@ -10,8 +10,8 @@
 */
 import { useEffect, useState } from 'react';
 
-export function useContent<T>(loader: () => Promise<T>) {
-  const [data, setData] = useState<T | null>(null);
+export function useContent<T>(loader: () => Promise<T>, initial?: T) {
+  const [data, setData] = useState<T | null>(initial ?? null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
