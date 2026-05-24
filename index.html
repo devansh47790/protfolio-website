@@ -7,9 +7,98 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/site-icon-192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Devansh Patel - Portfolio</title>
-    <meta name="description" content="Portfolio, projects, and writing by Devansh Patel." />
+    <title>WordPress Website Development Melbourne | Akime</title>
+    <meta name="description" content="Akime builds fast, SEO-friendly WordPress websites, WooCommerce stores, React frontends, and CMS-powered sites for Melbourne and Australian small businesses." />
+    <link rel="canonical" href="https://akime.com.au/" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="WordPress Website Development Melbourne | Akime" />
+    <meta property="og:description" content="Fast, SEO-friendly WordPress websites, WooCommerce stores, React frontends, and CMS-powered sites for Melbourne and Australian small businesses." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Akime" />
+    <meta property="og:url" content="https://akime.com.au/" />
+    <meta property="og:image" content="https://akime.com.au/project-images/aurum-poultry-co.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WordPress Website Development Melbourne | Akime" />
+    <meta name="twitter:description" content="Fast, SEO-friendly WordPress websites, WooCommerce stores, React frontends, and CMS-powered sites for Melbourne and Australian small businesses." />
+    <meta name="twitter:image" content="https://akime.com.au/project-images/aurum-poultry-co.jpg" />
     <meta name="theme-color" content="#000000" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://akime.com.au/#organization",
+            "name": "Akime",
+            "url": "https://akime.com.au/",
+            "email": "devansh.s.patel149@gmail.com",
+            "logo": "https://akime.com.au/site-icon-192.png",
+            "founder": {
+              "@type": "Person",
+              "name": "Devansh Patel",
+              "url": "https://akime.com.au/"
+            },
+            "sameAs": [
+              "https://github.com/devansh47790",
+              "https://www.linkedin.com/in/devanshpatel149/"
+            ]
+          },
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://akime.com.au/#localbusiness",
+            "name": "Akime",
+            "url": "https://akime.com.au/",
+            "email": "devansh.s.patel149@gmail.com",
+            "image": "https://akime.com.au/project-images/aurum-poultry-co.jpg",
+            "priceRange": "$$",
+            "areaServed": [
+              { "@type": "City", "name": "Melbourne" },
+              { "@type": "Country", "name": "AU" }
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Melbourne",
+              "addressRegion": "VIC",
+              "addressCountry": "AU"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://akime.com.au/#website",
+            "name": "Akime",
+            "url": "https://akime.com.au/",
+            "publisher": { "@id": "https://akime.com.au/#organization" },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://akime.com.au/projects?search={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+        ]
+      }
+    </script>
+    <!--
+      Fonts are self-hosted via @fontsource-variable (imported in main.tsx).
+      No external requests needed — preconnects to Google Fonts removed.
+    -->
+    <link rel="preconnect" href="https://2gm1jzpw.apicdn.sanity.io" crossorigin />
+  </head>
+  <body>
+    <div id="root">
+      <main>
+        <section class="border-b border-surface-400">
+          <div class="container-page pb-20 pt-20 md:pb-28 md:pt-28 lg:pb-32 lg:pt-32">
+            <p class="caption text-gold-500">Melbourne WordPress Website Development</p>
+            <h1 class="mt-8 max-w-4xl">WordPress website development in Melbourne for growing businesses.</h1>
+            <p class="mt-8 max-w-2xl text-body-lg text-charcoal-500">
+              Akime builds fast, SEO-friendly WordPress websites, WooCommerce stores, React frontends, and CMS-powered experiences for Australian small businesses that need a site they can trust and update.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
     <script>
       (function () {
         var canonicalHost = 'akime.com.au';
@@ -21,26 +110,17 @@
           return;
         }
 
-        var canonical = document.createElement('link');
+        var canonical = document.querySelector('link[rel="canonical"]') || document.createElement('link');
         canonical.rel = 'canonical';
         canonical.href = canonicalUrl;
-        document.head.appendChild(canonical);
+        if (!canonical.parentNode) document.head.appendChild(canonical);
 
-        var robots = document.createElement('meta');
+        var robots = document.querySelector('meta[name="robots"]') || document.createElement('meta');
         robots.name = 'robots';
         robots.content = 'index, follow';
-        document.head.appendChild(robots);
+        if (!robots.parentNode) document.head.appendChild(robots);
       })();
     </script>
-
-    <!--
-      Fonts are self-hosted via @fontsource-variable (imported in main.tsx).
-      No external requests needed — preconnects to Google Fonts removed.
-    -->
-    <link rel="preconnect" href="https://2gm1jzpw.apicdn.sanity.io" crossorigin />
-  </head>
-  <body>
-    <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

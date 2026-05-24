@@ -4,8 +4,10 @@ import Reveal from '../components/ui/Reveal';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import Seo from '../components/seo/Seo';
+import JsonLd from '../components/seo/JsonLd';
 import { useContent } from '../hooks/useContent';
 import { getAboutContent, getSiteSettings } from '../lib/cms';
+import { breadcrumbsSchema } from '../lib/seo';
 
 export default function AboutPage() {
   const { data: about } = useContent(getAboutContent);
@@ -21,6 +23,13 @@ export default function AboutPage() {
         keywords={about.seo?.keywords ?? ['Devansh Patel', 'WordPress developer', 'React developer', 'frontend engineer', 'web developer Australia']}
         path="/about"
         ogImageUrl={about.seo?.ogImageUrl}
+      />
+      <JsonLd
+        id="breadcrumbs-about"
+        data={breadcrumbsSchema(site, [
+          { name: 'Home', path: '/' },
+          { name: 'About', path: '/about' },
+        ])}
       />
 
       <Section spacing="lg">

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../ui/Button';
 import { siteSettings } from '../../data/site';
 import { cn } from '../../lib/cn';
@@ -82,40 +81,31 @@ export default function Navbar() {
         </button>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            key="mobile-drawer"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="overflow-hidden border-t border-surface-400 bg-surface md:hidden"
-          >
-            <div className="container-page flex flex-col gap-1 py-6">
-              {links.map((l) => (
-                <NavLink
-                  key={l.to}
-                  to={l.to}
-                  end={l.to === '/'}
-                  onClick={() => setOpen(false)}
-                  className={({ isActive }: { isActive: boolean }) =>
-                    cn(
-                      'caption px-2 py-3',
-                      isActive ? 'text-charcoal-900' : 'text-charcoal-500',
-                    )
-                  }
-                >
-                  {l.label}
-                </NavLink>
-              ))}
-              <div className="mt-4 px-1">
-                <Button to="/contact" className="w-full">Hire me</Button>
-              </div>
+      {open && (
+        <div className="overflow-hidden border-t border-surface-400 bg-surface md:hidden">
+          <div className="container-page flex flex-col gap-1 py-6">
+            {links.map((l) => (
+              <NavLink
+                key={l.to}
+                to={l.to}
+                end={l.to === '/'}
+                onClick={() => setOpen(false)}
+                className={({ isActive }: { isActive: boolean }) =>
+                  cn(
+                    'caption px-2 py-3',
+                    isActive ? 'text-charcoal-900' : 'text-charcoal-500',
+                  )
+                }
+              >
+                {l.label}
+              </NavLink>
+            ))}
+            <div className="mt-4 px-1">
+              <Button to="/contact" className="w-full">Hire me</Button>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import type { ReactNode, ButtonHTMLAttributes } from 'react';
 import { cn } from '../../lib/cn';
 
@@ -35,7 +34,7 @@ interface AsButton
 type ButtonProps = AsLink | AsExternal | AsButton;
 
 const base =
-  'inline-flex items-center justify-center gap-2 font-sans font-medium uppercase tracking-[0.1em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50';
+  'inline-flex items-center justify-center gap-2 font-sans font-medium uppercase tracking-[0.1em] transition duration-200 hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0';
 
 const variants: Record<Variant, string> = {
   primary:
@@ -57,29 +56,25 @@ export default function Button(props: ButtonProps) {
   const size = props.size ?? 'md';
   const sizeClasses = variant === 'text' ? '' : sizes[size];
   const classes = cn(base, variants[variant], sizeClasses, props.className);
-  const motionProps = { whileHover: { y: -1 } };
 
   if ('to' in props && props.to) {
     return (
-      <motion.span {...motionProps} className="inline-block">
-        <Link to={props.to} className={classes}>
-          {props.children}
-        </Link>
-      </motion.span>
+      <Link to={props.to} className={classes}>
+        {props.children}
+      </Link>
     );
   }
 
   if ('href' in props && props.href) {
     return (
-      <motion.a
-        {...motionProps}
+      <a
         href={props.href}
         target="_blank"
         rel="noreferrer"
         className={classes}
       >
         {props.children}
-      </motion.a>
+      </a>
     );
   }
 

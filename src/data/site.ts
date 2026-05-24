@@ -2,9 +2,13 @@ import type { SiteSettings, HomeContent, AboutContent } from '../types/content';
 
 export const siteSettings: SiteSettings = {
   ownerName: 'Devansh Patel',
-  tagline: 'WordPress and React developer building polished, API-connected websites.',
+  businessName: 'Akime',
+  tagline: 'Melbourne WordPress website development for small businesses that need fast, practical, SEO-friendly websites.',
   email: 'devansh.s.patel149@gmail.com',
-  location: 'Available on site / remote / hybrid',
+  location: 'Melbourne, Victoria, Australia',
+  city: 'Melbourne',
+  region: 'VIC',
+  country: 'AU',
   // Public production URL. Used to generate canonical links and the sitemap.
   // Update this when you point your real domain at the deploy.
   siteUrl: 'https://akime.com.au',
@@ -15,17 +19,17 @@ export const siteSettings: SiteSettings = {
   resumeUrl: '/resume.pdf',
   defaultOgImageUrl: '/project-images/aurum-poultry-co.jpg',
   seo: {
-    title: 'Devansh Patel | WordPress & React Developer',
-    description: 'Portfolio of Devansh Patel, a WordPress and React developer building WooCommerce websites, custom themes, and API-connected web experiences.',
-    keywords: ['Devansh Patel', 'WordPress developer', 'React developer', 'WooCommerce developer', 'API integration', 'frontend developer'],
+    title: 'Akime | WordPress Website Development Melbourne',
+    description: 'Akime is a Melbourne website development studio led by Devansh Patel, building fast WordPress, WooCommerce, React, and CMS-powered websites.',
+    keywords: ['Akime', 'WordPress website development Melbourne', 'WordPress developer Melbourne', 'React developer Melbourne', 'WooCommerce developer Melbourne'],
   },
 };
 
 export const homeContent: HomeContent = {
-  heroEyebrow: 'WordPress / React / API Integration',
-  heroHeadline: 'I build websites that are elegant, fast, and easy to manage.',
+  heroEyebrow: 'Melbourne WordPress Website Development',
+  heroHeadline: 'WordPress website development in Melbourne for growing businesses.',
   heroSubhead:
-    'From custom WordPress builds to React frontends and API-connected portfolios, I create clean digital experiences that feel premium and stay practical to maintain.',
+    'Akime builds fast, SEO-friendly WordPress websites, WooCommerce stores, React frontends, and CMS-powered experiences for Australian small businesses that need a site they can trust and update.',
   primaryCta: { label: 'See my work', href: '/projects' },
   secondaryCta: { label: 'Get in touch', href: '/contact' },
   highlightStats: [
@@ -34,9 +38,9 @@ export const homeContent: HomeContent = {
     { label: 'Core stack', value: 'WP / React / APIs' },
   ],
   seo: {
-    title: 'Devansh Patel | WordPress, React & API Portfolio',
-    description: 'Explore polished WordPress websites, React frontends, WooCommerce builds, and API-connected portfolio work by Devansh Patel.',
-    keywords: ['WordPress portfolio', 'React portfolio', 'WooCommerce websites', 'custom WordPress theme', 'API portfolio'],
+    title: 'WordPress Website Development Melbourne | Akime',
+    description: 'Akime builds fast, SEO-friendly WordPress websites, WooCommerce stores, React frontends, and CMS-powered sites for Melbourne and Australian small businesses.',
+    keywords: ['WordPress website development Melbourne', 'WordPress website design Melbourne', 'small business website design Melbourne', 'WooCommerce developer Melbourne', 'website maintenance Melbourne'],
   },
 };
 

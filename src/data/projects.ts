@@ -47,7 +47,7 @@ export const projects: Project[] = [
     coverColor: 'from-charcoal-700 to-charcoal-900',
     featured: true,
     liveUrl: 'https://aurumpoultryco.au/',
-    imageUrl: '/project-images/aurum-poultry-co.jpg',
+    imageUrl: '/project-images/aurum-poultry-co.webp',
     problem:
       'Aurum needed a refined digital presence that could communicate product quality, farming story, recipes, wholesale information, and product discovery in one place.',
     approach: [
@@ -72,7 +72,7 @@ export const projects: Project[] = [
     coverColor: 'from-gold-300 to-gold-700',
     featured: true,
     liveUrl: 'https://ezitag.com/',
-    imageUrl: '/project-images/ezitag.png',
+    imageUrl: '/project-images/ezitag.webp',
     problem:
       'EziTag needed a catalogue-heavy website that could handle many product groups across event merchandise, conference supplies, lanyards, badges, and branded items.',
     approach: [
@@ -97,7 +97,7 @@ export const projects: Project[] = [
     coverColor: 'from-surface-600 to-charcoal-700',
     featured: true,
     liveUrl: 'https://expresslanyards.com.au/',
-    imageUrl: '/project-images/express-lanyards.png',
+    imageUrl: '/project-images/express-lanyards.webp',
     problem:
       'Express Lanyards needed an online store structure that made a focused product range easy to browse by type, material, colour, and use case.',
     approach: [
@@ -122,7 +122,7 @@ export const projects: Project[] = [
     coverColor: 'from-charcoal-500 to-charcoal-800',
     featured: true,
     liveUrl: 'https://weboracle.com.au/',
-    imageUrl: '/project-images/weboracle.jpg',
+    imageUrl: '/project-images/weboracle.webp',
     problem:
       'WebOracle needed a company portfolio that could communicate broad digital services while keeping service pathways easy to understand.',
     approach: [
@@ -147,7 +147,7 @@ export const projects: Project[] = [
     coverColor: 'from-surface-400 to-gold-300',
     featured: true,
     liveUrl: 'https://www.bqk.com.au/',
-    imageUrl: '/project-images/bqk-accountants.jpg',
+    imageUrl: '/project-images/bqk-accountants.webp',
     problem:
       'The accounting firm needed a professional website that could explain a wide service range while giving users quick access to forms, tools, reviews, and appointments.',
     approach: commonApproach,
@@ -164,7 +164,7 @@ export const projects: Project[] = [
     coverColor: 'from-slate-700 to-charcoal-900',
     featured: true,
     liveUrl: 'https://www.baggycap.com.au/',
-    imageUrl: '/project-images/baggycap.jpg',
+    imageUrl: '/project-images/baggycap.webp',
     problem:
       'The brand needed a focused website for cricket clubs and sporting customers looking for custom caps and apparel.',
     approach: commonApproach,
@@ -181,7 +181,7 @@ export const projects: Project[] = [
     coverColor: 'from-charcoal-700 to-charcoal-900',
     featured: false,
     liveUrl: 'https://www.cambridgecabinets.com.au/',
-    imageUrl: '/project-images/cambridge-cabinets.jpg',
+    imageUrl: '/project-images/cambridge-cabinets.webp',
     problem:
       'The business needed a clean local-service website that could present custom cabinetry and joinery work to homeowners and builders.',
     approach: commonApproach,
@@ -198,7 +198,7 @@ export const projects: Project[] = [
     coverColor: 'from-gold-300 to-gold-700',
     featured: false,
     liveUrl: 'https://www.sportscourtsvictoria.com.au/',
-    imageUrl: '/project-images/sports-courts-victoria.jpg',
+    imageUrl: '/project-images/sports-courts-victoria.webp',
     problem:
       'The business needed a service website for sports court builds, surface products, installation information, and regional search visibility.',
     approach: commonApproach,
@@ -215,7 +215,7 @@ export const projects: Project[] = [
     coverColor: 'from-surface-600 to-charcoal-700',
     featured: false,
     liveUrl: 'https://www.mec-consulting.com.au/',
-    imageUrl: '/project-images/mec-consulting.jpg',
+    imageUrl: '/project-images/mec-consulting.webp',
     problem:
       'MEC needed a warm consulting website that could explain change management, wellbeing assessments, program management, and digital transformation without feeling generic.',
     approach: commonApproach,
@@ -232,7 +232,7 @@ export const projects: Project[] = [
     coverColor: 'from-charcoal-500 to-charcoal-800',
     featured: false,
     liveUrl: 'https://www.barwongrovetransport.com.au/',
-    imageUrl: '/project-images/barwon-grove-transport.jpg',
+    imageUrl: '/project-images/barwon-grove-transport.webp',
     problem:
       'The transport company needed a practical website that clearly presented heavy haulage services, fleet capability, service areas, and quote enquiries.',
     approach: commonApproach,
@@ -249,7 +249,7 @@ export const projects: Project[] = [
     coverColor: 'from-surface-400 to-gold-300',
     featured: false,
     liveUrl: 'https://www.tuckerexcavations.com.au/',
-    imageUrl: '/project-images/tucker-excavations.jpg',
+    imageUrl: '/project-images/tucker-excavations.webp',
     problem:
       'The civil contractor needed a website that could present service capability, plant hire categories, project experience, and regional expertise.',
     approach: commonApproach,
@@ -266,7 +266,7 @@ export const projects: Project[] = [
     coverColor: 'from-slate-700 to-charcoal-900',
     featured: false,
     liveUrl: 'https://www.drysdaleclinic.com.au/',
-    imageUrl: '/project-images/drysdale-clinic.jpg',
+    imageUrl: '/project-images/drysdale-clinic.webp',
     problem:
       'The clinic needed a trustworthy website that could make essential medical service information easy for patients to find.',
     approach: commonApproach,
@@ -283,7 +283,7 @@ export const projects: Project[] = [
     coverColor: 'from-charcoal-700 to-charcoal-900',
     featured: false,
     liveUrl: 'https://www.ultimateplanttrailers.com.au/',
-    imageUrl: '/project-images/ultimate-plant-trailers.jpg',
+    imageUrl: '/project-images/ultimate-plant-trailers.webp',
     problem:
       'The manufacturer needed a strong product-led website for custom trailer ranges, fabrication details, project imagery, brochures, and quote enquiries.',
     approach: commonApproach,
@@ -300,7 +300,7 @@ export const projects: Project[] = [
     coverColor: 'from-gold-300 to-gold-700',
     featured: false,
     liveUrl: 'https://www.quantumcivil.com.au/',
-    imageUrl: '/project-images/quantum-civil.jpg',
+    imageUrl: '/project-images/quantum-civil.webp',
     problem:
       'The civil construction business needed a clear website that could present contractor capability and local service relevance.',
     approach: commonApproach,
@@ -317,7 +317,7 @@ export const projects: Project[] = [
     coverColor: 'from-surface-600 to-charcoal-700',
     featured: false,
     liveUrl: 'https://www.dallahchapel.com.au/',
-    imageUrl: '/project-images/dallah-chapel.jpg',
+    imageUrl: '/project-images/dallah-chapel.webp',
     problem:
       'The venue needed a refined website to communicate accommodation, weddings, events, and the character of the chapel experience.',
     approach: commonApproach,
@@ -334,7 +334,7 @@ export const projects: Project[] = [
     coverColor: 'from-charcoal-500 to-charcoal-800',
     featured: false,
     liveUrl: 'https://www.michaellimbbuilders.com.au/',
-    imageUrl: '/project-images/michael-limb-builders.jpg',
+    imageUrl: '/project-images/michael-limb-builders.webp',
     problem:
       'The builder needed a professional portfolio-style website that could present custom homes, craftsmanship, and local expertise.',
     approach: commonApproach,
@@ -351,7 +351,7 @@ export const projects: Project[] = [
     coverColor: 'from-surface-400 to-gold-300',
     featured: false,
     liveUrl: 'https://www.augellohomes.com.au/',
-    imageUrl: '/project-images/augello-homes.jpg',
+    imageUrl: '/project-images/augello-homes.webp',
     problem:
       'The builder needed a website that could present new homes and renovation services with strong project imagery and clear local positioning.',
     approach: commonApproach,
@@ -368,7 +368,7 @@ export const projects: Project[] = [
     coverColor: 'from-slate-700 to-charcoal-900',
     featured: false,
     liveUrl: 'https://www.westcranes.com.au/',
-    imageUrl: '/project-images/west-cranes.jpg',
+    imageUrl: '/project-images/west-cranes.webp',
     problem:
       'The industrial business needed a detailed website that could cover products, services, emergency support, service areas, projects, and downloads.',
     approach: commonApproach,
@@ -385,7 +385,7 @@ export const projects: Project[] = [
     coverColor: 'from-charcoal-700 to-charcoal-900',
     featured: false,
     liveUrl: 'https://www.vgtc.org.au/',
-    imageUrl: '/project-images/vgtc.jpg',
+    imageUrl: '/project-images/vgtc.webp',
     problem:
       'The organisation needed a website that could help users understand apprenticeship and traineeship pathways while supporting job discovery.',
     approach: commonApproach,
@@ -402,7 +402,7 @@ export const projects: Project[] = [
     coverColor: 'from-gold-300 to-gold-700',
     featured: false,
     liveUrl: 'https://www.networkpest.com.au/',
-    imageUrl: '/project-images/network-pest-control.jpg',
+    imageUrl: '/project-images/network-pest-control.webp',
     problem:
       'The business needed a direct service website that could make pest control help easy to understand and easy to request.',
     approach: commonApproach,
@@ -419,7 +419,7 @@ export const projects: Project[] = [
     coverColor: 'from-surface-600 to-charcoal-700',
     featured: false,
     liveUrl: 'https://www.completebackflowtesting.com.au/',
-    imageUrl: '/project-images/complete-backflow-testing.jpg',
+    imageUrl: '/project-images/complete-backflow-testing.webp',
     problem:
       'The specialist plumbing business needed a focused compliance website for backflow testing, valve services, reports, sectors, and service locations.',
     approach: commonApproach,
@@ -436,7 +436,7 @@ export const projects: Project[] = [
     coverColor: 'from-charcoal-500 to-charcoal-800',
     featured: false,
     liveUrl: 'https://www.markpotterlandsurveyor.com.au/',
-    imageUrl: '/project-images/mark-potter-land-surveyor.jpg',
+    imageUrl: '/project-images/mark-potter-land-surveyor.webp',
     problem:
       'The surveyor needed a clear professional website that could communicate specialist services, service areas, experience, and quote enquiries.',
     approach: commonApproach,
@@ -453,7 +453,7 @@ export const projects: Project[] = [
     coverColor: 'from-surface-400 to-gold-300',
     featured: false,
     liveUrl: 'https://www.astralflow.com.au/',
-    imageUrl: '/project-images/astral-flow.jpg',
+    imageUrl: '/project-images/astral-flow.webp',
     problem:
       'The wellness business needed a calm website that could explain therapy offerings and guide visitors toward enquiries or bookings.',
     approach: commonApproach,
@@ -470,7 +470,7 @@ export const projects: Project[] = [
     coverColor: 'from-slate-700 to-charcoal-900',
     featured: false,
     liveUrl: 'https://www.macfinancialadvice.com.au/',
-    imageUrl: '/project-images/mac-financial-advice.jpg',
+    imageUrl: '/project-images/mac-financial-advice.webp',
     problem:
       'The financial advice firm needed a trustworthy website that could present wealth management services and encourage confident enquiries.',
     approach: commonApproach,

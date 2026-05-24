@@ -6,10 +6,14 @@ export const siteSettings = defineType({
   type: 'document',
   fields: [
     defineField({ name: 'ownerName', type: 'string', validation: (r) => r.required() }),
+    defineField({ name: 'businessName', title: 'Business name', type: 'string' }),
     defineField({ name: 'tagline', type: 'string' }),
     defineField({ name: 'email', type: 'string', validation: (r) => r.email() }),
     defineField({ name: 'phone', type: 'string' }),
     defineField({ name: 'location', type: 'string' }),
+    defineField({ name: 'city', type: 'string', initialValue: 'Melbourne' }),
+    defineField({ name: 'region', type: 'string', initialValue: 'VIC' }),
+    defineField({ name: 'country', type: 'string', initialValue: 'AU' }),
     defineField({
       name: 'siteUrl',
       title: 'Production URL',

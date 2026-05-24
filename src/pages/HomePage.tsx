@@ -11,7 +11,7 @@ import { useContent } from '../hooks/useContent';
 import {
   getHomeContent, getFeaturedProjects, getServices, getSiteSettings,
 } from '../lib/cms';
-import { personSchema } from '../lib/seo';
+import { breadcrumbsSchema, localBusinessSchema, organizationSchema, personSchema, webSiteSchema } from '../lib/seo';
 import { homeContent as staticHome, siteSettings as staticSite } from '../data/site';
 import { projects as staticProjects } from '../data/projects';
 import { services as staticServices } from '../data/services';
@@ -36,14 +36,27 @@ export default function HomePage() {
         path="/"
         ogImageUrl={home?.seo?.ogImageUrl}
       />
-      {site && <JsonLd id="person" data={personSchema(site)} />}
+      {site && (
+        <>
+          <JsonLd
+            id="homepage-identity"
+            data={[
+              organizationSchema(site),
+              localBusinessSchema(site),
+              webSiteSchema(site),
+              personSchema(site),
+              breadcrumbsSchema(site, [{ name: 'Home', path: '/' }]),
+            ]}
+          />
+        </>
+      )}
 
       <Hero content={home} />
 
       <Section
         eyebrow="Selected work"
-        heading="WordPress websites and portfolio builds"
-        description="A selection of WordPress websites across e-commerce, company portfolios, service businesses, trades, healthcare, construction, and professional services."
+        heading="Melbourne WordPress websites and portfolio builds"
+        description="A selection of WordPress website development work across e-commerce, company portfolios, service businesses, trades, healthcare, construction, and professional services."
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {featured?.map((p, i) => (

@@ -89,6 +89,8 @@ export default function ProjectDetailPage() {
                 <img
                   src={project.imageUrl}
                   alt={project.imageAlt || `${project.title} website screenshot`}
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover"
                 />
               </div>

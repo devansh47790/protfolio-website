@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import Badge from '../ui/Badge';
 import type { Project } from '../../types/content';
 
@@ -14,11 +13,7 @@ export default function ProjectCard({ project }: Props) {
   const imageAlt = project.imageAlt || `${project.title} website screenshot`;
 
   return (
-    <motion.div
-      whileHover={{ y: -2 }}
-      transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
-      className="group border border-surface-400 bg-surface-100 transition-colors hover:border-gold-300/70"
-    >
+    <div className="group border border-surface-400 bg-surface-100 transition hover:-translate-y-0.5 hover:border-gold-300/70">
       <Link to={`/projects/${project.slug}`} className="block">
         <div className={`relative aspect-[4/3] w-full bg-gradient-to-br ${project.coverColor}`}>
           {project.imageUrl ? (
@@ -60,6 +55,6 @@ export default function ProjectCard({ project }: Props) {
           </p>
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 }

@@ -5,8 +5,10 @@ import Section from '../components/ui/Section';
 import Reveal from '../components/ui/Reveal';
 import Button from '../components/ui/Button';
 import Seo from '../components/seo/Seo';
+import JsonLd from '../components/seo/JsonLd';
 import { useContent } from '../hooks/useContent';
 import { getSiteSettings } from '../lib/cms';
+import { breadcrumbsSchema } from '../lib/seo';
 
 export default function ContactPage() {
   const { data: site } = useContent(getSiteSettings);
@@ -26,6 +28,15 @@ export default function ContactPage() {
         keywords={['contact web developer', 'hire WordPress developer', 'React developer contact', 'WooCommerce developer', 'API website project']}
         path="/contact"
       />
+      {site && (
+        <JsonLd
+          id="breadcrumbs-contact"
+          data={breadcrumbsSchema(site, [
+            { name: 'Home', path: '/' },
+            { name: 'Contact', path: '/contact' },
+          ])}
+        />
+      )}
 
       <Section spacing="lg">
         <Reveal>

@@ -5,8 +5,10 @@ import Section from '../components/ui/Section';
 import Reveal from '../components/ui/Reveal';
 import Badge from '../components/ui/Badge';
 import Seo from '../components/seo/Seo';
-import { getBlogPostBySlug } from '../lib/cms';
-import type { BlogBodyBlock, BlogPost } from '../types/content';
+import JsonLd from '../components/seo/JsonLd';
+import { getBlogPostBySlug, getSiteSettings } from '../lib/cms';
+import { blogPostingSchema, breadcrumbsSchema } from '../lib/seo';
+import type { BlogBodyBlock, BlogPost, SiteSettings } from '../types/content';
 
 function blockText(block: Extract<BlogBodyBlock, { _type: 'block' }>) {
   return block.children?.map((child) => child.text ?? '').join('') ?? '';
@@ -26,7 +28,13 @@ function BlogBody({ body }: { body: BlogBodyBlock[] }) {
           if (!block.imageUrl) return null;
           return (
             <figure key={key} className="space-y-2">
-              <img src={block.imageUrl} alt={block.alt ?? ''} className="w-full border border-surface-400 object-cover" />
+              <img
+                src={block.imageUrl}
+                alt={block.alt ?? ''}
+                loading="lazy"
+                decoding="async"
+                className="w-full border border-surface-400 object-cover"
+              />
               {block.alt && <figcaption className="text-body-sm text-charcoal-500">{block.alt}</figcaption>}
             </figure>
           );
@@ -56,10 +64,12 @@ function BlogBody({ body }: { body: BlogBodyBlock[] }) {
 export default function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPost | null | undefined>(undefined);
+  const [site, setSite] = useState<SiteSettings | null>(null);
 
   useEffect(() => {
     if (!slug) return;
     getBlogPostBySlug(slug).then(setPost);
+    getSiteSettings().then(setSite);
   }, [slug]);
 
   if (post === undefined) {
@@ -89,6 +99,19 @@ export default function BlogDetailPage() {
         ogImageUrl={post.seo?.ogImageUrl ?? post.coverImageUrl}
         ogType="article"
       />
+      {site && (
+        <>
+          <JsonLd id={`blog-${post.slug}`} data={blogPostingSchema(post, site)} />
+          <JsonLd
+            id={`breadcrumbs-blog-${post.slug}`}
+            data={breadcrumbsSchema(site, [
+              { name: 'Home', path: '/' },
+              { name: 'Blog', path: '/blog' },
+              { name: post.title, path: `/blog/${post.slug}` },
+            ])}
+          />
+        </>
+      )}
 
       <Section spacing="lg">
         <Reveal>

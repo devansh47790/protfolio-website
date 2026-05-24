@@ -43,7 +43,7 @@ const SEO_PROJECTION = `
 export async function getSiteSettings(): Promise<SiteSettings> {
   if (!sanityEnabled || !sanityClient) return staticSiteSettings;
   const data = await sanityClient.fetch(`*[_type == "siteSettings"][0]{
-    ownerName, tagline, email, phone, location, siteUrl, resumeUrl,
+    ownerName, businessName, tagline, email, phone, location, city, region, country, siteUrl, resumeUrl,
     "defaultOgImageUrl": defaultOgImage.asset->url,
     socials,
     ${SEO_PROJECTION}
@@ -133,6 +133,7 @@ const BLOG_PROJECTION = `
   },
   tags, publishedAt, readingMinutes,
   "coverImageUrl": coverImage.asset->url,
+  "coverImageAlt": coverImage.alt,
   ${SEO_PROJECTION}
 `;
 

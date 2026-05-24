@@ -6,8 +6,10 @@ import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Seo from '../components/seo/Seo';
-import { getBlogPosts } from '../lib/cms';
-import type { BlogPost } from '../types/content';
+import JsonLd from '../components/seo/JsonLd';
+import { getBlogPosts, getSiteSettings } from '../lib/cms';
+import { breadcrumbsSchema } from '../lib/seo';
+import type { BlogPost, SiteSettings } from '../types/content';
 
 function formatDate(date: string) {
   return new Date(date).toLocaleDateString(undefined, {
@@ -19,9 +21,11 @@ function formatDate(date: string) {
 
 export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[] | undefined>(undefined);
+  const [site, setSite] = useState<SiteSettings | null>(null);
 
   useEffect(() => {
     getBlogPosts().then(setPosts);
+    getSiteSettings().then(setSite);
   }, []);
 
   return (
@@ -32,6 +36,15 @@ export default function BlogPage() {
         keywords={['WordPress journal', 'React notes', 'API integration', 'frontend development', 'website performance SEO']}
         path="/blog"
       />
+      {site && (
+        <JsonLd
+          id="breadcrumbs-blog"
+          data={breadcrumbsSchema(site, [
+            { name: 'Home', path: '/' },
+            { name: 'Blog', path: '/blog' },
+          ])}
+        />
+      )}
 
       <Section
         spacing="lg"
@@ -50,7 +63,9 @@ export default function BlogPage() {
                   {post.coverImageUrl && (
                     <img
                       src={post.coverImageUrl}
-                      alt=""
+                      alt={post.coverImageAlt || `${post.title} article cover image`}
+                      loading="lazy"
+                      decoding="async"
                       className="-mx-8 -mt-8 mb-7 aspect-[16/9] w-[calc(100%+4rem)] object-cover"
                     />
                   )}

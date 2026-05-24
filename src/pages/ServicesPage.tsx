@@ -3,11 +3,14 @@ import Section from '../components/ui/Section';
 import Reveal from '../components/ui/Reveal';
 import ServiceCard from '../components/sections/ServiceCard';
 import Seo from '../components/seo/Seo';
+import JsonLd from '../components/seo/JsonLd';
 import { useContent } from '../hooks/useContent';
-import { getServices } from '../lib/cms';
+import { getServices, getSiteSettings } from '../lib/cms';
+import { breadcrumbsSchema } from '../lib/seo';
 
 export default function ServicesPage() {
   const { data: services } = useContent(getServices);
+  const { data: site } = useContent(getSiteSettings);
 
   return (
     <PageTransition>
@@ -17,6 +20,15 @@ export default function ServicesPage() {
         keywords={['WordPress services', 'React frontend services', 'WooCommerce development', 'API integration services', 'website performance SEO']}
         path="/services"
       />
+      {site && (
+        <JsonLd
+          id="breadcrumbs-services"
+          data={breadcrumbsSchema(site, [
+            { name: 'Home', path: '/' },
+            { name: 'Services', path: '/services' },
+          ])}
+        />
+      )}
 
       <Section
         spacing="lg"

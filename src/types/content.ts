@@ -26,10 +26,14 @@ export interface Seo {
 
 export interface SiteSettings {
   ownerName: string;
+  businessName?: string;
   tagline: string;
   email: string;
   phone?: string;
   location: string;
+  city?: string;
+  region?: string;
+  country?: string;
   /** Production URL of the site, e.g. https://devanshpatel.dev — used for canonical + sitemap */
   siteUrl: string;
   socials: { label: string; href: string }[];
@@ -98,6 +102,7 @@ export interface BlogPost {
   publishedAt: string;    // ISO date
   readingMinutes: number;
   coverImageUrl?: string;
+  coverImageAlt?: string;
   seo?: Seo;
 }
 
