@@ -75,6 +75,7 @@ export interface Project {
   category: string;       // used by the filter on /projects
   tags: string[];
   imageUrl?: string;      // hero image for the detail page + card
+  imageAlt?: string;      // image alt text from Sanity
   coverColor: string;     // tailwind gradient class for the placeholder cover
   featured: boolean;
   liveUrl?: string;

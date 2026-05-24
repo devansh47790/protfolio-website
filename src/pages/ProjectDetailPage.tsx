@@ -86,7 +86,11 @@ export default function ProjectDetailPage() {
           <div className="grid gap-8 md:grid-cols-[1.2fr_0.8fr] md:items-start">
             {project.imageUrl && (
               <div className={`relative aspect-[4/3] overflow-hidden bg-gradient-to-br ${project.coverColor}`}>
-                <img src={project.imageUrl} alt="" className="h-full w-full object-cover" />
+                <img
+                  src={project.imageUrl}
+                  alt={project.imageAlt || `${project.title} website screenshot`}
+                  className="h-full w-full object-cover"
+                />
               </div>
             )}
           <div className="max-w-2xl border border-surface-400 bg-surface-100 p-8 md:p-10">

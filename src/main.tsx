@@ -29,8 +29,8 @@ import TagManager from 'react-gtm-module';
   Before running `npm run dev` or building, install the packages once:
     npm install @fontsource-variable/inter @fontsource-variable/noto-serif
 */
-import '@fontsource-variable/inter';
-import '@fontsource-variable/noto-serif';           // upright (normal)
+import '@fontsource-variable/inter/index.css';
+import '@fontsource-variable/noto-serif/index.css';           // upright (normal)
 import '@fontsource-variable/noto-serif/wght-italic.css'; // italic
 
 import './index.css';

@@ -16,13 +16,17 @@ export default defineConfig({
     */
     rollupOptions: {
       output: {
-        manualChunks: {
-          // React core — almost never changes, long-cached
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          // Framer Motion is large (~35 KiB gz) but only needed for animations
-          'vendor-motion': ['framer-motion'],
-          // Sanity client only needed once CMS data is fetched
-          'vendor-sanity': ['@sanity/client', '@sanity/image-url'],
+        manualChunks(id) {
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom') || id.includes('node_modules/react-router-dom')) {
+            return 'vendor-react';
+          }
+          if (id.includes('node_modules/framer-motion')) {
+            return 'vendor-motion';
+          }
+          if (id.includes('node_modules/@sanity')) {
+            return 'vendor-sanity';
+          }
+          return undefined;
         },
       },
     },

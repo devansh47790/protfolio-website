@@ -11,6 +11,8 @@ function sizedImageUrl(url: string, width: number) {
 }
 
 export default function ProjectCard({ project }: Props) {
+  const imageAlt = project.imageAlt || `${project.title} website screenshot`;
+
   return (
     <motion.div
       whileHover={{ y: -2 }}
@@ -28,7 +30,7 @@ export default function ProjectCard({ project }: Props) {
                 `${sizedImageUrl(project.imageUrl, 960)} 960w`,
               ].join(', ')}
               sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-              alt=""
+              alt={imageAlt}
               loading="lazy"
               decoding="async"
               className="absolute inset-0 h-full w-full object-cover"

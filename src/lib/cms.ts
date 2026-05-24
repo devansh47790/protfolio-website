@@ -80,6 +80,7 @@ const PROJECT_PROJECTION = `
   title, summary, category, tags, coverColor, featured,
   liveUrl, repoUrl, problem, approach, outcomes, date,
   "imageUrl": image.asset->url,
+  "imageAlt": image.alt,
   ${SEO_PROJECTION}
 `;
 

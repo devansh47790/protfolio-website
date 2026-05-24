@@ -17,6 +17,7 @@ npm install
 npm run dev      # http://localhost:5173
 npm run build    # production build → dist/
 npm run preview  # preview the production build locally
+npm run indexnow # submit sitemap URLs to Bing/IndexNow
 ```
 
 ## What's in the box
