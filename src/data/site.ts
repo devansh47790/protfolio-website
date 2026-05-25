@@ -4,7 +4,7 @@ export const siteSettings: SiteSettings = {
   ownerName: 'Devansh Patel',
   businessName: 'Akime',
   tagline: 'Melbourne WordPress website development for small businesses that need fast, practical, SEO-friendly websites.',
-  email: 'devansh.s.patel149@gmail.com',
+  email: 'hello@akime.com.au',
   location: 'Melbourne, Victoria, Australia',
   city: 'Melbourne',
   region: 'VIC',
