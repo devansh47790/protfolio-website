@@ -36,7 +36,7 @@ export default function ServicesPage() {
 
       <Section
         spacing="lg"
-        eyebrow="Services draft"
+        eyebrow="Services"
         heading="Website services are being refined"
         headingLevel="h1"
         description="For now, the focus is simple: custom WordPress sites, React frontends, and API integrations for portfolios and business websites."
