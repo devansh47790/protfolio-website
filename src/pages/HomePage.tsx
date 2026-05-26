@@ -15,6 +15,9 @@ import { breadcrumbsSchema, localBusinessSchema, organizationSchema, personSchem
 import { homeContent as staticHome, siteSettings as staticSite } from '../data/site';
 import { projects as staticProjects } from '../data/projects';
 import { services as staticServices } from '../data/services';
+import { getRouteSeo } from '../data/routeSeo';
+
+const routeMeta = getRouteSeo('/');
 
 export default function HomePage() {
   // Pass static data as initial values so the page renders immediately on
@@ -30,9 +33,9 @@ export default function HomePage() {
   return (
     <PageTransition>
       <Seo
-        title={home?.seo?.title ?? 'Devansh Patel | WordPress, React & API Portfolio'}
-        description={home?.seo?.description ?? 'Explore polished WordPress websites, React frontends, WooCommerce builds, and API-connected portfolio work by Devansh Patel.'}
-        keywords={home?.seo?.keywords ?? ['WordPress developer', 'React developer', 'WooCommerce developer', 'API integration', 'portfolio website developer']}
+        title={home?.seo?.title ?? routeMeta.title}
+        description={home?.seo?.description ?? routeMeta.description}
+        keywords={home?.seo?.keywords ?? routeMeta.keywords}
         path="/"
         ogImageUrl={home?.seo?.ogImageUrl}
       />

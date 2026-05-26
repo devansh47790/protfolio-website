@@ -7,6 +7,10 @@ import JsonLd from '../components/seo/JsonLd';
 import { useContent } from '../hooks/useContent';
 import { getServices, getSiteSettings } from '../lib/cms';
 import { breadcrumbsSchema } from '../lib/seo';
+import { getRouteSeo } from '../data/routeSeo';
+
+// Single source of truth for this page's meta — shared with the prerender plugin.
+const routeMeta = getRouteSeo('/services');
 
 export default function ServicesPage() {
   const { data: services } = useContent(getServices);
@@ -15,9 +19,9 @@ export default function ServicesPage() {
   return (
     <PageTransition>
       <Seo
-        title="WordPress, React & API Services | Devansh Patel"
-        description="Website services for custom WordPress builds, React frontends, WooCommerce, API integrations, performance, SEO, and maintainable content workflows."
-        keywords={['WordPress services', 'React frontend services', 'WooCommerce development', 'API integration services', 'website performance SEO']}
+        title={routeMeta.title}
+        description={routeMeta.description}
+        keywords={routeMeta.keywords}
         path="/services"
       />
       {site && (

@@ -10,6 +10,9 @@ import JsonLd from '../components/seo/JsonLd';
 import { getBlogPosts, getSiteSettings } from '../lib/cms';
 import { breadcrumbsSchema } from '../lib/seo';
 import type { BlogPost, SiteSettings } from '../types/content';
+import { getRouteSeo } from '../data/routeSeo';
+
+const routeMeta = getRouteSeo('/blog');
 
 function formatDate(date: string) {
   return new Date(date).toLocaleDateString(undefined, {
@@ -31,9 +34,9 @@ export default function BlogPage() {
   return (
     <PageTransition>
       <Seo
-        title="Journal | WordPress, React & Web Craft"
-        description="Notes from Devansh Patel on WordPress builds, React frontends, API integrations, performance, SEO, and practical website craft."
-        keywords={['WordPress journal', 'React notes', 'API integration', 'frontend development', 'website performance SEO']}
+        title={routeMeta.title}
+        description={routeMeta.description}
+        keywords={routeMeta.keywords}
         path="/blog"
       />
       {site && (

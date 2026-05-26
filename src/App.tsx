@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -12,8 +13,29 @@ import BlogDetailPage from './pages/BlogDetailPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 import usePageTracking from './hooks/usePageTracking';
+
 export default function App() {
   usePageTracking();
+
+  /*
+    app-rendered event — used by vite-plugin-prerender at build time.
+
+    HOW IT WORKS:
+    The prerender plugin opens your site in a headless browser and waits
+    for this event before it snapshots the HTML.  Firing it inside
+    useEffect means it only dispatches AFTER React has finished rendering
+    AND after all child useEffects have run (including <Seo>'s useEffect
+    that writes the correct <title> and <meta> into <head>).
+
+    This ensures the pre-rendered HTML files contain the right per-page
+    meta tags rather than the homepage fallbacks.
+
+    In production / normal browsing this event is harmless — nothing
+    listens for it so it is silently ignored.
+  */
+  useEffect(() => {
+    document.dispatchEvent(new Event('app-rendered'));
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col">

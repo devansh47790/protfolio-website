@@ -8,6 +8,10 @@ import JsonLd from '../components/seo/JsonLd';
 import { useContent } from '../hooks/useContent';
 import { getAboutContent, getSiteSettings } from '../lib/cms';
 import { breadcrumbsSchema } from '../lib/seo';
+import { getRouteSeo } from '../data/routeSeo';
+
+// CMS data takes priority; routeMeta is the fallback baked into the pre-rendered HTML.
+const routeMeta = getRouteSeo('/about');
 
 export default function AboutPage() {
   const { data: about } = useContent(getAboutContent);
@@ -18,9 +22,9 @@ export default function AboutPage() {
   return (
     <PageTransition>
       <Seo
-        title={about.seo?.title ?? 'About Devansh Patel | Web Developer'}
-        description={about.seo?.description ?? 'Learn about Devansh Patel, a web developer focused on WordPress, WooCommerce, React, TypeScript, Tailwind CSS, and clean API-connected websites.'}
-        keywords={about.seo?.keywords ?? ['Devansh Patel', 'WordPress developer', 'React developer', 'frontend engineer', 'web developer Australia']}
+        title={about.seo?.title ?? routeMeta.title}
+        description={about.seo?.description ?? routeMeta.description}
+        keywords={about.seo?.keywords ?? routeMeta.keywords}
         path="/about"
         ogImageUrl={about.seo?.ogImageUrl}
       />

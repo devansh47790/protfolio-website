@@ -9,6 +9,9 @@ import { useContent } from '../hooks/useContent';
 import { getProjects, getSiteSettings } from '../lib/cms';
 import { cn } from '../lib/cn';
 import { breadcrumbsSchema } from '../lib/seo';
+import { getRouteSeo } from '../data/routeSeo';
+
+const routeMeta = getRouteSeo('/projects');
 
 export default function ProjectsPage() {
   const { data: projects } = useContent(getProjects);
@@ -53,9 +56,9 @@ export default function ProjectsPage() {
   return (
     <PageTransition>
       <Seo
-        title="WordPress & React Portfolio | Devansh Patel"
-        description="Explore WordPress, WooCommerce, company portfolio, and React projects built by Devansh Patel for service businesses, trades, healthcare, and professional brands."
-        keywords={['WordPress portfolio', 'React portfolio', 'WooCommerce projects', 'custom WordPress theme', 'company portfolio websites']}
+        title={routeMeta.title}
+        description={routeMeta.description}
+        keywords={routeMeta.keywords}
         path="/projects"
       />
       {site && (

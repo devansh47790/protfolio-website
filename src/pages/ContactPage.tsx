@@ -9,6 +9,9 @@ import JsonLd from '../components/seo/JsonLd';
 import { useContent } from '../hooks/useContent';
 import { getSiteSettings } from '../lib/cms';
 import { breadcrumbsSchema } from '../lib/seo';
+import { getRouteSeo } from '../data/routeSeo';
+
+const routeMeta = getRouteSeo('/contact');
 
 export default function ContactPage() {
   const { data: site } = useContent(getSiteSettings);
@@ -23,9 +26,9 @@ export default function ContactPage() {
   return (
     <PageTransition>
       <Seo
-        title="Contact Devansh Patel | Web Developer"
-        description="Contact Devansh Patel for WordPress websites, React frontends, WooCommerce builds, API integrations, and portfolio website projects."
-        keywords={['contact web developer', 'hire WordPress developer', 'React developer contact', 'WooCommerce developer', 'API website project']}
+        title={routeMeta.title}
+        description={routeMeta.description}
+        keywords={routeMeta.keywords}
         path="/contact"
       />
       {site && (
