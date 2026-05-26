@@ -105,10 +105,14 @@ await loadLocalEnv();
 const siteUrl = await readSiteUrl();
 let projectSlugs = await readSlugs('src/data/projects.ts', 'projects');
 let blogSlugs = await readSlugs('src/data/blogPosts.ts', 'blogPosts');
+// Service slugs come from src/data/services.ts. The detail page at
+// /services/:slug needs to be in the sitemap so Google can discover it.
+let serviceSlugs = await readSlugs('src/data/services.ts', 'services');
 
 try {
   projectSlugs = await readSanitySlugs('project') ?? projectSlugs;
   blogSlugs = await readSanitySlugs('blogPost') ?? blogSlugs;
+  serviceSlugs = await readSanitySlugs('service') ?? serviceSlugs;
 } catch (error) {
   console.warn(`Falling back to static slugs for sitemap: ${error.message}`);
 }
@@ -122,6 +126,14 @@ const urls = [
   { loc: `${siteUrl}/projects`, changefreq: 'weekly',  priority: 0.9, lastmod: today },
   { loc: `${siteUrl}/blog`,     changefreq: 'weekly',  priority: 0.7, lastmod: today },
   { loc: `${siteUrl}/contact`,  changefreq: 'yearly',  priority: 0.6, lastmod: today },
+  // Service detail pages — priority sits between the index pages and
+  // blog posts because they are commercial-intent landing pages.
+  ...serviceSlugs.map((slug) => ({
+    loc: `${siteUrl}/services/${slug}`,
+    changefreq: 'monthly',
+    priority: 0.85,
+    lastmod: today,
+  })),
   ...projectSlugs.map((slug) => ({
     loc: `${siteUrl}/projects/${slug}`,
     changefreq: 'monthly',

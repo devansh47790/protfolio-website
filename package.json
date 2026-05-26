@@ -12,7 +12,8 @@
     "images:webp": "node scripts/generate-webp-images.mjs",
     "sitemap": "node scripts/generate-sitemap.mjs",
     "indexnow": "node scripts/submit-indexnow.mjs",
-    "migrate:sanity": "dotenv -e .env.local -- tsx scripts/migrate-to-sanity.mjs"
+    "migrate:sanity": "dotenv -e .env.local -- tsx scripts/migrate-to-sanity.mjs",
+    "push:week1-services": "dotenv -e .env.local -- node scripts/push-week1-service-pages.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",

@@ -68,6 +68,19 @@ export interface Service {
   summary: string;
   icon: string;           // key into ui icon set
   bullets: string[];
+  canonicalUrl?: string;
+  robots?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  targetKeywords?: string[];
+  h1?: string;
+  hero?: BlogBodyBlock[];
+  ctaLinks?: { label: string; href: string }[];
+  sections?: { heading: string; body: BlogBodyBlock[] }[];
+  faqs?: { question: string; answer: string }[];
+  schemaJson?: string;
+  internalLinks?: { label?: string; href?: string }[];
+  externalLinks?: { label?: string; href?: string; note?: string }[];
   seo?: Seo;
 }
 

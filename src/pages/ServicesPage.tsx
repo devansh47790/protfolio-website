@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import PageTransition from '../components/layout/PageTransition';
 import Section from '../components/ui/Section';
 import Reveal from '../components/ui/Reveal';
@@ -44,7 +45,19 @@ export default function ServicesPage() {
         <div className="grid gap-6 sm:grid-cols-2">
           {services?.map((s, i) => (
             <Reveal key={s._id} delay={i * 0.05}>
-              <ServiceCard service={s} />
+              {/*
+                Wrap the card in a Link so the entire card is clickable.
+                "block focus:outline-none" keeps the visual identical to
+                the unlinked version while preserving keyboard focus
+                handling on the inner card.
+              */}
+              <Link
+                to={`/services/${s.slug}`}
+                className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-300 rounded-lg"
+                aria-label={`Learn more about ${s.title}`}
+              >
+                <ServiceCard service={s} />
+              </Link>
             </Reveal>
           ))}
         </div>

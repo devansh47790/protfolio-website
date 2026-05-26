@@ -111,14 +111,46 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
   return data ?? null;
 }
 
+/*
+  SERVICE_PROJECTION covers both the index card (title/summary/icon/bullets)
+  AND the long-form detail page fields (h1, hero, sections, faqs, schemaJson,
+  internalLinks, externalLinks, ctaLinks, targetKeywords).
+  The Sanity schema mirrors these exactly — when the field doesn't exist on
+  a document yet, Sanity returns undefined and the detail page degrades
+  gracefully to showing just the index-style summary.
+*/
 const SERVICE_PROJECTION = `
   _id, "slug": slug.current, title, summary, icon, bullets,
+  h1, hero,
+  ctaLinks,
+  targetKeywords,
+  sections[]{ heading, body },
+  faqs[]{ question, answer },
+  schemaJson,
+  internalLinks[]{ label, href },
+  externalLinks[]{ label, href, note },
+  canonicalUrl, robots, ogTitle, ogDescription,
   ${SEO_PROJECTION}
 `;
 
 export async function getServices(): Promise<Service[]> {
   if (!sanityEnabled || !sanityClient) return staticServices;
   return sanityClient.fetch(`*[_type == "service"]{ ${SERVICE_PROJECTION} }`);
+}
+
+/**
+ * Fetch a single service by slug. Used by /services/:slug detail page.
+ * Returns null if no service with that slug exists (caller renders 404).
+ */
+export async function getServiceBySlug(slug: string): Promise<Service | null> {
+  if (!sanityEnabled || !sanityClient) {
+    return staticServices.find((s) => s.slug === slug) ?? null;
+  }
+  const data = await sanityClient.fetch(
+    `*[_type == "service" && slug.current == $slug][0]{ ${SERVICE_PROJECTION} }`,
+    { slug },
+  );
+  return data ?? null;
 }
 
 const BLOG_PROJECTION = `
