@@ -44,7 +44,7 @@ export default function ServicesPage() {
       >
         <div className="grid gap-6 sm:grid-cols-2">
           {services?.map((s, i) => (
-            <Reveal key={s._id} delay={i * 0.05}>
+            <Reveal key={s._id} delay={i * 0.05} className="h-full">
               {/*
                 Wrap the card in a Link so the entire card is clickable.
                 "block focus:outline-none" keeps the visual identical to
@@ -53,7 +53,7 @@ export default function ServicesPage() {
               */}
               <Link
                 to={`/services/${s.slug}`}
-                className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-300 rounded-lg"
+                className="block h-full rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-300"
                 aria-label={`Learn more about ${s.title}`}
               >
                 <ServiceCard service={s} />

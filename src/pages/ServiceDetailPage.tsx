@@ -17,7 +17,7 @@
     - If `schemaJson` isn't valid JSON, the Service block is silently skipped.
     - Unknown slug → friendly "Service not found" with a link back.
 */
-import { useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import PageTransition from '../components/layout/PageTransition';
 import Section from '../components/ui/Section';
@@ -29,17 +29,112 @@ import { getServiceBySlug, getSiteSettings } from '../lib/cms';
 import { breadcrumbsSchema } from '../lib/seo';
 import type { Service, SiteSettings, BlogBodyBlock } from '../types/content';
 
-/**
- * Turn a BlogBodyBlock (string or Portable Text block) into displayable text.
- * Local data is plain strings; Sanity will eventually send block objects with
- * children[].text. We render both shapes to one string here.
- */
-function blockToText(block: BlogBodyBlock): string {
+function blockText(block: BlogBodyBlock): string {
   if (typeof block === 'string') return block;
   if ('children' in block && Array.isArray(block.children)) {
     return block.children.map((c) => c.text ?? '').join('');
   }
   return '';
+}
+
+function markedText(
+  block: Extract<BlogBodyBlock, { _type: 'block' }>,
+  child: NonNullable<Extract<BlogBodyBlock, { _type: 'block' }>['children']>[number],
+) {
+  return (child.marks ?? []).reduce<ReactNode>((content, mark) => {
+    if (mark === 'strong') return <strong>{content}</strong>;
+    if (mark === 'em') return <em>{content}</em>;
+    if (mark === 'code') return <code className="bg-surface-300 px-1 py-0.5 text-body-sm">{content}</code>;
+
+    const link = block.markDefs?.find((definition) => definition._key === mark && definition.href);
+    if (!link?.href) return content;
+
+    return (
+      <a
+        href={link.href}
+        target={link.href.startsWith('http') ? '_blank' : undefined}
+        rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+        className="text-gold-500 underline-offset-4 hover:underline"
+      >
+        {content}
+      </a>
+    );
+  }, child.text ?? '');
+}
+
+function RichServiceContent({
+  blocks,
+  lead = false,
+}: {
+  blocks: BlogBodyBlock[];
+  lead?: boolean;
+}) {
+  return (
+    <div className={lead ? 'max-w-2xl space-y-4' : 'max-w-3xl space-y-5'}>
+      {blocks.map((block, i) => {
+        if (typeof block === 'string') {
+          return (
+            <p key={i} className={lead ? 'text-body-lg text-charcoal-500' : 'text-body-md leading-relaxed text-charcoal-700'}>
+              {block}
+            </p>
+          );
+        }
+
+        const key = block._key ?? i;
+
+        if (block._type === 'image') {
+          if (!block.imageUrl) return null;
+          return (
+            <figure key={key} className="space-y-2">
+              <img
+                src={block.imageUrl}
+                alt={block.alt ?? ''}
+                loading="lazy"
+                decoding="async"
+                className="w-full border border-surface-400 object-cover"
+              />
+              {block.alt && <figcaption className="text-body-sm text-charcoal-500">{block.alt}</figcaption>}
+            </figure>
+          );
+        }
+
+        const content = block.children?.map((child) => (
+          <span key={child._key ?? child.text}>{markedText(block, child)}</span>
+        ));
+        if (!blockText(block)) return null;
+
+        if (block.style === 'h2') return <h2 key={key} className="pt-4 text-h3 text-charcoal-900">{content}</h2>;
+        if (block.style === 'h3') return <h3 key={key} className="pt-2 text-h4 text-charcoal-900">{content}</h3>;
+        if (block.style === 'blockquote') {
+          return (
+            <blockquote key={key} className="border-l-2 border-gold-300 pl-5 font-serif text-xl italic text-charcoal-700">
+              {content}
+            </blockquote>
+          );
+        }
+        if (block.listItem === 'bullet') {
+          return (
+            <ul key={key} className="ml-6 list-disc text-charcoal-700">
+              <li>{content}</li>
+            </ul>
+          );
+        }
+        if (block.listItem === 'number') {
+          return (
+            <ol key={key} className="ml-6 list-decimal text-charcoal-700">
+              <li>{content}</li>
+            </ol>
+          );
+        }
+
+        return (
+          <p key={key} className={lead ? 'text-body-lg text-charcoal-500' : 'text-body-md leading-relaxed text-charcoal-700'}>
+            {content}
+          </p>
+        );
+      })}
+    </div>
+  );
 }
 
 export default function ServiceDetailPage() {
@@ -149,12 +244,8 @@ export default function ServiceDetailPage() {
           {/* Long-form hero paragraphs (only on SEO pages). The index-style
               services skip this and rely on summary instead. */}
           {service.hero && service.hero.length > 0 ? (
-            <div className="mt-6 max-w-2xl space-y-4">
-              {service.hero.map((block, i) => (
-                <p key={i} className="text-body-lg text-charcoal-500">
-                  {blockToText(block)}
-                </p>
-              ))}
+            <div className="mt-6">
+              <RichServiceContent blocks={service.hero} lead />
             </div>
           ) : (
             <p className="mt-5 max-w-2xl text-body-lg text-charcoal-500">
@@ -202,12 +293,8 @@ export default function ServiceDetailPage() {
         <Section key={section.heading} spacing="md">
           <Reveal>
             <h2 className="max-w-3xl text-h3">{section.heading}</h2>
-            <div className="mt-6 max-w-3xl space-y-4">
-              {section.body.map((block, i) => (
-                <p key={i} className="text-body-md leading-relaxed text-charcoal-700">
-                  {blockToText(block)}
-                </p>
-              ))}
+            <div className="mt-6">
+              <RichServiceContent blocks={section.body ?? []} />
             </div>
           </Reveal>
           {/* Hairline divider between sections, except after the last */}

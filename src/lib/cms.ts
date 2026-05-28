@@ -121,10 +121,28 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
 */
 const SERVICE_PROJECTION = `
   _id, "slug": slug.current, title, summary, icon, bullets,
-  h1, hero,
+  h1,
+  hero[]{
+    ...,
+    _type == "image" => {
+      ...,
+      "imageUrl": asset->url,
+      alt
+    }
+  },
   ctaLinks,
   targetKeywords,
-  sections[]{ heading, body },
+  sections[]{
+    heading,
+    body[]{
+      ...,
+      _type == "image" => {
+        ...,
+        "imageUrl": asset->url,
+        alt
+      }
+    }
+  },
   faqs[]{ question, answer },
   schemaJson,
   internalLinks[]{ label, href },

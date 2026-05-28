@@ -126,7 +126,8 @@ export type BlogBodyBlock =
       _type: 'block';
       style?: 'normal' | 'h2' | 'h3' | 'blockquote';
       listItem?: 'bullet' | 'number';
-      children?: { _key?: string; text?: string }[];
+      markDefs?: { _key?: string; _type?: 'link'; href?: string }[];
+      children?: { _key?: string; text?: string; marks?: string[] }[];
     }
   | {
       _key?: string;

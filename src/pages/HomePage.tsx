@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import PageTransition from '../components/layout/PageTransition';
 import Hero from '../components/sections/Hero';
 import Section from '../components/ui/Section';
@@ -81,8 +82,14 @@ export default function HomePage() {
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
           {services?.map((s, i) => (
-            <Reveal key={s._id} delay={i * 0.05}>
-              <ServiceCard service={s} />
+            <Reveal key={s._id} delay={i * 0.05} className="h-full">
+              <Link
+                to={`/services/${s.slug}`}
+                className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-300"
+                aria-label={`Learn more about ${s.title}`}
+              >
+                <ServiceCard service={s} />
+              </Link>
             </Reveal>
           ))}
         </div>

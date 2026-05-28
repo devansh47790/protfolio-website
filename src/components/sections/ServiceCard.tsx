@@ -28,21 +28,42 @@ const ICONS: Record<string, React.ReactNode> = {
 };
 
 export default function ServiceCard({ service }: Props) {
+  /*
+    Card is wrapped in a <Link> over in ServicesPage.tsx, so the whole
+    card is clickable. We add a visible "Learn more →" affordance at
+    the bottom so users actually realise they CAN click it. Without
+    this the card looks static and the click area is invisible.
+
+    We use a <span> not a nested <Link> — nested anchors are invalid
+    HTML and would also strip keyboard focus from the outer wrapper.
+  */
   return (
-    <Card hoverable>
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-charcoal-900">
-        {ICONS[service.icon] ?? null}
-      </svg>
-      <h3 className="mt-8 text-h4">{service.title}</h3>
-      <p className="mt-3 text-body-md text-charcoal-500">{service.summary}</p>
-      <ul className="mt-6 space-y-3 text-body-md text-charcoal-700">
-        {service.bullets.map((b) => (
-          <li key={b} className="flex gap-3">
-            <span className="mt-3 h-px w-3 shrink-0 bg-gold-300" />
-            <span className="leading-relaxed">{b}</span>
-          </li>
-        ))}
-      </ul>
+    <Card hoverable className="h-full">
+      {/* `group` makes the arrow animate on the outer Link's hover state */}
+      <div className="group flex h-full flex-col">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-charcoal-900">
+          {ICONS[service.icon] ?? null}
+        </svg>
+        <h3 className="mt-8 text-h4">{service.title}</h3>
+        <p className="mt-3 text-body-md text-charcoal-500">{service.summary}</p>
+        <ul className="mt-6 space-y-3 text-body-md text-charcoal-700">
+          {service.bullets.map((b) => (
+            <li key={b} className="flex gap-3">
+              <span className="mt-3 h-px w-3 shrink-0 bg-gold-300" />
+              <span className="leading-relaxed">{b}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Clickability affordance — pushed to the bottom of the card */}
+        <span
+          className="mt-auto flex items-center justify-between gap-4 border-t border-surface-400 pt-6 text-body-sm font-semibold uppercase tracking-[0.1em] text-gold-500 transition group-hover:border-gold-300 group-hover:text-charcoal-900"
+          aria-hidden="true"
+        >
+          Learn more
+          <span className="text-lg leading-none transition group-hover:translate-x-1">-&gt;</span>
+        </span>
+      </div>
     </Card>
   );
 }
