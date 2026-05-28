@@ -106,8 +106,13 @@
         var canonicalHost = 'akime.com.au';
         var canonicalOrigin = 'https://' + canonicalHost;
         var canonicalUrl = canonicalOrigin + window.location.pathname + window.location.search;
+        var redirectHosts = [
+          'www.akime.com.au',
+          'portfolio-website-df88d.web.app',
+          'portfolio-website-df88d.firebaseapp.com'
+        ];
 
-        if (window.location.hostname !== canonicalHost) {
+        if (redirectHosts.indexOf(window.location.hostname) !== -1) {
           window.location.replace(canonicalUrl + window.location.hash);
           return;
         }

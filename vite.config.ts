@@ -1,7 +1,13 @@
 import { defineConfig } from 'vite'
+import { createRequire } from 'node:module'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import react from '@vitejs/plugin-react'
-// @ts-ignore – vite-plugin-prerender ships CommonJS, no official TS types yet
-import prerender from 'vite-plugin-prerender'
+// vite-plugin-prerender's ESM entry calls require(), so load its CJS entry.
+const require = createRequire(import.meta.url)
+const prerender = require('vite-plugin-prerender') as typeof import('vite-plugin-prerender').default
+const PuppeteerRenderer = prerender.PuppeteerRenderer
+const projectRoot = fileURLToPath(new URL('.', import.meta.url))
 
 /*
   PRERENDERING — WHY & HOW
@@ -34,9 +40,11 @@ export default defineConfig({
     prerender({
       /*
         staticDir: where Vite writes the built files.
-        Must match your `build.outDir` (default: "dist").
+        Must match your `build.outDir` (default: "dist"). This plugin's
+        Express fallback needs an absolute path on Windows.
       */
-      staticDir: 'dist',
+      staticDir: path.join(projectRoot, 'dist'),
+      indexPath: path.join(projectRoot, 'dist', 'index.html'),
 
       /*
         routes: the list of URL paths to pre-render.
@@ -45,8 +53,7 @@ export default defineConfig({
       */
       routes: STATIC_ROUTES,
 
-      renderer: '@prerenderer/renderer-puppeteer',
-      rendererOptions: {
+      renderer: new PuppeteerRenderer({
         /*
           renderAfterDocumentEvent: the prerenderer waits until your
           React app dispatches this custom event before it captures the
@@ -57,12 +64,17 @@ export default defineConfig({
           the useEffect in src/App.tsx which dispatches it.
         */
         renderAfterDocumentEvent: 'app-rendered',
+        skipThirdPartyRequests: true,
+        navigationOptions: {
+          waitUntil: 'domcontentloaded',
+          timeout: 30000,
+        },
         /*
-          headless: "new" uses Chrome's modern headless mode (faster,
-          lighter than the legacy "--headless" flag).
+          This plugin uses an older Puppeteer renderer, so headless is a
+          boolean rather than Chrome's newer "new" headless mode string.
         */
-        headless: 'new',
-      },
+        headless: true,
+      }),
     }),
   ],
 
