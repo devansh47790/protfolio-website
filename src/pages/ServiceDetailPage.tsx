@@ -29,6 +29,8 @@ import { getServiceBySlug, getSiteSettings } from '../lib/cms';
 import { breadcrumbsSchema } from '../lib/seo';
 import type { Service, SiteSettings, BlogBodyBlock } from '../types/content';
 
+const serviceSectionTopPadding = '!pt-12';
+
 function blockText(block: BlogBodyBlock): string {
   if (typeof block === 'string') return block;
   if ('children' in block && Array.isArray(block.children)) {
@@ -155,7 +157,7 @@ export default function ServiceDetailPage() {
   if (service === null) {
     return (
       <PageTransition>
-        <Section spacing="lg">
+        <Section spacing="lg" className={serviceSectionTopPadding}>
           <h1>Service not found</h1>
           <p className="mt-3 text-charcoal-500">
             This service may have moved.{' '}
@@ -233,7 +235,7 @@ export default function ServiceDetailPage() {
       )}
 
       {/* HERO -------------------------------------------------------- */}
-      <Section spacing="lg">
+      <Section spacing="lg" className={serviceSectionTopPadding}>
         <Reveal>
           <Link to="/services" className="caption text-gold-500 hover:text-charcoal-900">
             &lt;- Back to services
@@ -274,7 +276,7 @@ export default function ServiceDetailPage() {
 
       {/* BULLETS (shared with the index card — gives a fast scannable summary) */}
       {service.bullets && service.bullets.length > 0 && (
-        <Section spacing="sm">
+        <Section spacing="sm" className={serviceSectionTopPadding}>
           <Reveal>
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {service.bullets.map((b) => (
@@ -290,7 +292,7 @@ export default function ServiceDetailPage() {
 
       {/* LONG-FORM SECTIONS ----------------------------------------- */}
       {service.sections?.map((section, idx) => (
-        <Section key={section.heading} spacing="md">
+        <Section key={section.heading} spacing="md" className={serviceSectionTopPadding}>
           <Reveal>
             <h2 className="max-w-3xl text-h3">{section.heading}</h2>
             <div className="mt-6">
@@ -308,6 +310,7 @@ export default function ServiceDetailPage() {
       {service.faqs && service.faqs.length > 0 && (
         <Section
           spacing="md"
+          className={serviceSectionTopPadding}
           eyebrow="FAQs"
           heading="Common questions"
           description="Honest answers to the questions clients ask before they hire."
@@ -335,6 +338,7 @@ export default function ServiceDetailPage() {
       {service.internalLinks && service.internalLinks.length > 0 && (
         <Section
           spacing="sm"
+          className={serviceSectionTopPadding}
           eyebrow="Related"
           heading="Keep exploring"
         >
@@ -357,7 +361,7 @@ export default function ServiceDetailPage() {
 
       {/* EXTERNAL TRUST LINKS --------------------------------------- */}
       {service.externalLinks && service.externalLinks.length > 0 && (
-        <Section spacing="sm">
+        <Section spacing="sm" className={serviceSectionTopPadding}>
           <p className="caption text-charcoal-500">Further reading</p>
           <ul className="mt-3 space-y-2">
             {service.externalLinks.map((link) =>
@@ -380,7 +384,7 @@ export default function ServiceDetailPage() {
       )}
 
       {/* FINAL CTA -------------------------------------------------- */}
-      <Section spacing="lg">
+      <Section spacing="lg" className={serviceSectionTopPadding}>
         <Reveal>
           <div className="max-w-2xl">
             <h2 className="text-h3">Ready to start?</h2>
