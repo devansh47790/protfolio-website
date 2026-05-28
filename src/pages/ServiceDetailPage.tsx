@@ -29,7 +29,7 @@ import { getServiceBySlug, getSiteSettings } from '../lib/cms';
 import { breadcrumbsSchema } from '../lib/seo';
 import type { Service, SiteSettings, BlogBodyBlock } from '../types/content';
 
-const serviceSectionTopPadding = '!pt-12';
+const serviceSectionTopPadding = '!pt-12 md:!pt-12 lg:!pt-12';
 
 function blockText(block: BlogBodyBlock): string {
   if (typeof block === 'string') return block;
