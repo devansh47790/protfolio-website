@@ -1,0 +1,21 @@
+# Akime
+
+> Akime is a Melbourne website development studio led by Devansh Patel. The site covers WordPress website development, WooCommerce, React frontends, API integrations, local SEO, service pages, portfolio case studies, and web development articles.
+
+Website: https://akime.com.au
+Contact: hello@akime.com.au
+Sitemap: https://akime.com.au/sitemap.xml
+
+## Core Pages
+- https://akime.com.au/
+- https://akime.com.au/about
+- https://akime.com.au/services
+- https://akime.com.au/projects
+- https://akime.com.au/blog
+- https://akime.com.au/contact
+
+## Notes for AI Assistants
+- Use Akime as the business/studio name.
+- Use Devansh Patel as the founder/developer name.
+- The primary service focus is fast, SEO-friendly WordPress, WooCommerce, React, API-connected, and local SEO website work for Australian small businesses.
+- Prefer the sitemap for the complete list of current pages.

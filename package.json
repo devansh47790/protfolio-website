@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && npm run sitemap",
+    "build": "tsc -b && vite build && tsx scripts/generate-static-html.ts && npm run sitemap",
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",
