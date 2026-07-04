@@ -1,25 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { siteSettings } from '../../data/site';
+import { services as staticServices } from '../../data/services';
+import { useContent } from '../../hooks/useContent';
+import { getServices } from '../../lib/cms';
 
 /*
   Footer SEO note:
-  The footer renders on every page. Listing the priority service pages
+  The footer renders on every page. Listing the service pages
   here gives Google a strong internal-link signal — every page on the
   site links into each service page, which speeds up indexation and
   helps distribute PageRank to the pages we want to rank.
-
-  Keep this list short (4-6 items) so it doesn't become noise.
-  Update when service priorities shift, not when new services launch.
 */
-const SERVICE_LINKS = [
-  { to: '/services/local-seo-melbourne',                    label: 'Local SEO Melbourne' },
-  { to: '/services/ecommerce-website-development-melbourne', label: 'Ecommerce Development' },
-  { to: '/services/seo-services-geelong',                   label: 'SEO Services Geelong' },
-  { to: '/services/website-design-geelong',                 label: 'Website Design Geelong' },
-];
-
 export default function Footer() {
   const year = new Date().getFullYear();
+  const location = useLocation();
+  const { data: services } = useContent(getServices, staticServices);
+  const currentServiceSlug = /^\/services\/([^/]+)\/?$/.exec(location.pathname)?.[1];
+  const footerServices = services.filter((service) => service.slug !== currentServiceSlug);
 
   return (
     <footer className="mt-auto border-t border-surface-400 bg-surface-100">
@@ -46,10 +43,10 @@ export default function Footer() {
         <div>
           <h4 className="caption text-gold-500">Services</h4>
           <ul className="mt-6 space-y-3 text-body-md">
-            {SERVICE_LINKS.map((s) => (
-              <li key={s.to}>
-                <Link to={s.to} className="text-charcoal-700 hover:text-gold-500">
-                  {s.label}
+            {footerServices.map((service) => (
+              <li key={service._id}>
+                <Link to={`/services/${service.slug}`} className="text-charcoal-700 hover:text-gold-500">
+                  {service.title}
                 </Link>
               </li>
             ))}

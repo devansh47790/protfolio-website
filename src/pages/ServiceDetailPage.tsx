@@ -25,7 +25,7 @@ import Reveal from '../components/ui/Reveal';
 import Button from '../components/ui/Button';
 import Seo from '../components/seo/Seo';
 import JsonLd from '../components/seo/JsonLd';
-import { getServiceBySlug, getSiteSettings } from '../lib/cms';
+import { getServiceBySlug, getServices, getSiteSettings } from '../lib/cms';
 import { breadcrumbsSchema } from '../lib/seo';
 import type { Service, SiteSettings, BlogBodyBlock } from '../types/content';
 
@@ -179,11 +179,15 @@ function RichServiceContent({
 export default function ServiceDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const [service, setService] = useState<Service | null | undefined>(undefined);
+  const [relatedServices, setRelatedServices] = useState<Service[]>([]);
   const [site, setSite] = useState<SiteSettings | null>(null);
 
   useEffect(() => {
     if (!slug) return;
     getServiceBySlug(slug).then(setService);
+    getServices().then((services) => {
+      setRelatedServices(services.filter((item) => item.slug !== slug));
+    });
     getSiteSettings().then(setSite);
   }, [slug]);
 
@@ -374,8 +378,8 @@ export default function ServiceDetailPage() {
         </Section>
       )}
 
-      {/* RELATED INTERNAL LINKS ------------------------------------- */}
-      {service.internalLinks && service.internalLinks.length > 0 && (
+      {/* RELATED SERVICES ------------------------------------------- */}
+      {relatedServices.length > 0 && (
         <Section
           spacing="sm"
           className={serviceSectionTopPadding}
@@ -383,18 +387,16 @@ export default function ServiceDetailPage() {
           heading="Keep exploring"
         >
           <ul className="mt-2 flex flex-wrap gap-3">
-            {service.internalLinks.map((link) =>
-              link.href ? (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className="inline-flex items-center gap-2 rounded-full border border-surface-400 px-4 py-2 text-body-sm text-charcoal-700 transition hover:border-gold-300 hover:text-charcoal-900"
-                  >
-                    {link.label ?? link.href}
-                  </Link>
-                </li>
-              ) : null,
-            )}
+            {relatedServices.map((related) => (
+              <li key={related._id}>
+                <Link
+                  to={`/services/${related.slug}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-surface-400 px-4 py-2 text-body-sm text-charcoal-700 transition hover:border-gold-300 hover:text-charcoal-900"
+                >
+                  {related.title}
+                </Link>
+              </li>
+            ))}
           </ul>
         </Section>
       )}
