@@ -39,6 +39,43 @@ function blockText(block: BlogBodyBlock): string {
   return '';
 }
 
+function hasSchemaType(value: unknown, type: string): boolean {
+  if (Array.isArray(value)) {
+    return value.some((item) => hasSchemaType(item, type));
+  }
+
+  if (!value || typeof value !== 'object') return false;
+
+  const record = value as Record<string, unknown>;
+  const schemaType = record['@type'];
+  if (schemaType === type) return true;
+  if (Array.isArray(schemaType) && schemaType.includes(type)) return true;
+
+  return false;
+}
+
+function stripSchemaType(value: unknown, type: string): unknown {
+  if (Array.isArray(value)) {
+    const items = value
+      .map((item) => stripSchemaType(item, type))
+      .filter((item) => item !== null);
+    return items.length > 0 ? items : null;
+  }
+
+  if (!value || typeof value !== 'object') return value;
+
+  const record = value as Record<string, unknown>;
+  if (hasSchemaType(record, type)) return null;
+
+  const next = Object.fromEntries(
+    Object.entries(record)
+      .map(([key, item]) => [key, stripSchemaType(item, type)] as const)
+      .filter(([, item]) => item !== null),
+  );
+
+  return Object.keys(next).length > 0 ? next : null;
+}
+
 function markedText(
   block: Extract<BlogBodyBlock, { _type: 'block' }>,
   child: NonNullable<Extract<BlogBodyBlock, { _type: 'block' }>['children']>[number],
@@ -172,10 +209,13 @@ export default function ServiceDetailPage() {
   }
 
   /* ----- Parse the optional Service JSON-LD attached to this page ----- */
-  let serviceSchema: Record<string, unknown> | null = null;
+  let serviceSchema: Record<string, unknown> | Record<string, unknown>[] | null = null;
   if (service.schemaJson) {
     try {
-      serviceSchema = JSON.parse(service.schemaJson) as Record<string, unknown>;
+      serviceSchema = stripSchemaType(
+        JSON.parse(service.schemaJson),
+        'FAQPage',
+      ) as Record<string, unknown> | Record<string, unknown>[] | null;
     } catch {
       // Bad JSON in the CMS — fail open. Don't crash the page.
       serviceSchema = null;

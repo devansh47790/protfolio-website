@@ -19,6 +19,10 @@ interface Props {
 
 export default function JsonLd({ id, data }: Props) {
   useEffect(() => {
+    document
+      .querySelectorAll('script[type="application/ld+json"][data-static-jsonld="true"]')
+      .forEach((el) => el.remove());
+
     const tagId = 'jsonld-' + id;
     let el = document.getElementById(tagId) as HTMLScriptElement | null;
     if (!el) {

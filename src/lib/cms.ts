@@ -36,6 +36,26 @@ const SEO_PROJECTION = `
   }
 `;
 
+function arrayOrEmpty<T>(value: T[] | null | undefined): T[] {
+  return Array.isArray(value) ? value : [];
+}
+
+function normalizeService(service: Service): Service {
+  return {
+    ...service,
+    bullets: arrayOrEmpty(service.bullets),
+    hero: arrayOrEmpty(service.hero),
+    ctaLinks: arrayOrEmpty(service.ctaLinks),
+    sections: arrayOrEmpty(service.sections).map((section) => ({
+      ...section,
+      body: arrayOrEmpty(section.body),
+    })),
+    faqs: arrayOrEmpty(service.faqs),
+    internalLinks: arrayOrEmpty(service.internalLinks),
+    externalLinks: arrayOrEmpty(service.externalLinks),
+  };
+}
+
 /* ------------------------------------------------------------------ */
 /* Site & page-level content                                          */
 /* ------------------------------------------------------------------ */
@@ -153,7 +173,8 @@ const SERVICE_PROJECTION = `
 
 export async function getServices(): Promise<Service[]> {
   if (!sanityEnabled || !sanityClient) return staticServices;
-  return sanityClient.fetch(`*[_type == "service"]{ ${SERVICE_PROJECTION} }`);
+  const data = await sanityClient.fetch<Service[]>(`*[_type == "service"]{ ${SERVICE_PROJECTION} }`);
+  return (data ?? []).map(normalizeService);
 }
 
 /**
@@ -168,7 +189,7 @@ export async function getServiceBySlug(slug: string): Promise<Service | null> {
     `*[_type == "service" && slug.current == $slug][0]{ ${SERVICE_PROJECTION} }`,
     { slug },
   );
-  return data ?? null;
+  return data ? normalizeService(data) : null;
 }
 
 const BLOG_PROJECTION = `

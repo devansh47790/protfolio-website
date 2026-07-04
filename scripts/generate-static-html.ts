@@ -254,6 +254,55 @@ function blockTexts(blocks?: BlogBodyBlock[]) {
   return (blocks ?? []).map(blockText).filter(Boolean);
 }
 
+function hasSchemaType(value: unknown, type: string): boolean {
+  if (Array.isArray(value)) {
+    return value.some((item) => hasSchemaType(item, type));
+  }
+
+  if (!value || typeof value !== 'object') return false;
+
+  const record = value as Record<string, unknown>;
+  const schemaType = record['@type'];
+  if (schemaType === type) return true;
+  if (Array.isArray(schemaType) && schemaType.includes(type)) return true;
+
+  return false;
+}
+
+function stripSchemaType(value: unknown, type: string): unknown {
+  if (Array.isArray(value)) {
+    const items = value
+      .map((item) => stripSchemaType(item, type))
+      .filter((item) => item !== null);
+    return items.length > 0 ? items : null;
+  }
+
+  if (!value || typeof value !== 'object') return value;
+
+  const record = value as Record<string, unknown>;
+  if (hasSchemaType(record, type)) return null;
+
+  const next = Object.fromEntries(
+    Object.entries(record)
+      .map(([key, item]) => [key, stripSchemaType(item, type)] as const)
+      .filter(([, item]) => item !== null),
+  );
+
+  return Object.keys(next).length > 0 ? next : null;
+}
+
+function jsonLdItems(value: unknown): Record<string, unknown>[] {
+  if (Array.isArray(value)) {
+    return value.flatMap((item) => jsonLdItems(item));
+  }
+
+  if (value && typeof value === 'object') {
+    return [value as Record<string, unknown>];
+  }
+
+  return [];
+}
+
 function serviceJsonLd(service: Service) {
   const items: Record<string, unknown>[] = [
     breadcrumbsSchema(siteSettings, [
@@ -265,7 +314,8 @@ function serviceJsonLd(service: Service) {
 
   if (service.schemaJson) {
     try {
-      items.push(JSON.parse(service.schemaJson) as Record<string, unknown>);
+      const serviceSchema = stripSchemaType(JSON.parse(service.schemaJson), 'FAQPage');
+      items.push(...jsonLdItems(serviceSchema));
     } catch {
       items.push(fallbackServiceSchema(service));
     }
@@ -609,7 +659,7 @@ function buildHead(page: StaticPage, assetTags: string[]) {
     <meta name="twitter:description" content="${escapeHtml(page.description)}" />
     ${image ? `<meta name="twitter:image" content="${escapeHtml(image)}" />` : ''}
     <meta name="theme-color" content="#000000" />
-    ${jsonLd ? `<script type="application/ld+json">${jsonLd.replace(/</g, '\\u003c')}</script>` : ''}
+    ${jsonLd ? `<script type="application/ld+json" data-static-jsonld="true">${jsonLd.replace(/</g, '\\u003c')}</script>` : ''}
     <link rel="preconnect" href="https://2gm1jzpw.apicdn.sanity.io" crossorigin />
     ${assetTags.join('\n    ')}
   </head>`;

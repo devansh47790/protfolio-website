@@ -28,6 +28,8 @@ const ICONS: Record<string, React.ReactNode> = {
 };
 
 export default function ServiceCard({ service }: Props) {
+  const bullets = service.bullets ?? [];
+
   /*
     Card is wrapped in a <Link> over in ServicesPage.tsx, so the whole
     card is clickable. We add a visible "Learn more →" affordance at
@@ -46,14 +48,16 @@ export default function ServiceCard({ service }: Props) {
         </svg>
         <h3 className="mt-8 text-h4">{service.title}</h3>
         <p className="mt-3 text-body-md text-charcoal-500">{service.summary}</p>
-        <ul className="mt-6 space-y-3 text-body-md text-charcoal-700">
-          {service.bullets.map((b) => (
-            <li key={b} className="flex gap-3">
-              <span className="mt-3 h-px w-3 shrink-0 bg-gold-300" />
-              <span className="leading-relaxed">{b}</span>
-            </li>
-          ))}
-        </ul>
+        {bullets.length > 0 && (
+          <ul className="mt-6 space-y-3 text-body-md text-charcoal-700">
+            {bullets.map((b) => (
+              <li key={b} className="flex gap-3">
+                <span className="mt-3 h-px w-3 shrink-0 bg-gold-300" />
+                <span className="leading-relaxed">{b}</span>
+              </li>
+            ))}
+          </ul>
+        )}
 
         {/* Clickability affordance — pushed to the bottom of the card */}
         <span
