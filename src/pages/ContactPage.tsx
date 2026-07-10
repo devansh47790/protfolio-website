@@ -44,10 +44,83 @@ export default function ContactPage() {
       <Section spacing="lg">
         <Reveal>
           <p className="caption text-gold-500">Contact</p>
-          <h1 className="mt-3 max-w-3xl">Let's talk.</h1>
+
+          <h1 className="mt-3 max-w-3xl">
+            Let’s build your next website properly.
+          </h1>
+
           <p className="mt-5 max-w-xl text-body-lg text-charcoal-500">
-            I'm available for full-time roles and select contract work. Send a few sentences about what you're working on.
+            Akime works with small businesses across Hoppers Crossing, Wyndham City and
+            Melbourne to build fast, modern and SEO-friendly websites. Whether you need
+            a new WordPress website, WooCommerce store, React frontend, API integration,
+            local SEO help or performance support, you can contact Akime directly and
+            speak with the developer doing the work.
           </p>
+
+          <p className="mt-4 max-w-xl text-charcoal-500">
+            Use this page to request a quote, ask a technical question, discuss a
+            website issue or get advice on the best next step for your online presence.
+          </p>
+
+          <div className="mt-12 grid gap-10 md:grid-cols-2">
+            <section>
+              <h2 className="text-2xl font-semibold text-charcoal-900">
+                What you can contact Akime about
+              </h2>
+
+              <ul className="mt-5 space-y-3 text-charcoal-500">
+                <li>New WordPress websites</li>
+                <li>WooCommerce and ecommerce builds</li>
+                <li>Local SEO and digital marketing</li>
+                <li>React frontend development</li>
+                <li>API integrations</li>
+                <li>Website speed and performance fixes</li>
+                <li>Website maintenance and technical support</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-charcoal-900">
+                Who Akime works with
+              </h2>
+
+              <p className="mt-5 text-charcoal-500">
+                Akime works with tradies, service businesses, ecommerce stores, local
+                retailers, consultants, clinics, accountants and small businesses that
+                need clean, reliable and easy-to-manage websites.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-charcoal-900">
+                Service areas
+              </h2>
+
+              <p className="mt-5 text-charcoal-500">
+                Akime works with businesses in Hoppers Crossing, Werribee, Point Cook,
+                Tarneit, Truganina, Williams Landing, Laverton, Altona Meadows, Wyndham
+                Vale, Werribee South and across Melbourne.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-charcoal-900">
+                What happens after you contact Akime?
+              </h2>
+
+              <ol className="mt-5 space-y-3 text-charcoal-500">
+                <li>1. You send through your project details.</li>
+                <li>2. Akime reviews your website, goals or technical issue.</li>
+                <li>
+                  3. You receive a clear response with next steps, timeline and pricing
+                  direction.
+                </li>
+                <li>
+                  4. If the project is a good fit, Akime prepares a fixed-scope quote.
+                </li>
+              </ol>
+            </section>
+          </div>
         </Reveal>
 
         <div className="mt-12 grid gap-10 md:grid-cols-5">

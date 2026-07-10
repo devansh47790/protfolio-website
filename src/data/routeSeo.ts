@@ -108,9 +108,9 @@ export const STATIC_ROUTE_SEO: RouteSeoMeta[] = [
   },
   {
     path: '/contact',
-    title: 'Contact Devansh Patel | Web Developer Melbourne',
+    title: 'Contact Akime | Web Developer Hoppers Crossing & Melbourne',
     description:
-      'Contact Devansh Patel for WordPress websites, React frontends, WooCommerce builds, API integrations, and portfolio website projects.',
+      'Contact Akime for WordPress websites, WooCommerce, React frontends, SEO, API integrations and website support in Hoppers Crossing and Melbourne.',
     keywords: [
       'contact web developer',
       'hire WordPress developer',
